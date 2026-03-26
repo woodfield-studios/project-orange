@@ -3,15 +3,22 @@
 [sub_resource type="BoxMesh" id="BoxMesh_e6lj2"]
 size = Vector3(50, 1, 50)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6lj2"]
+albedo_color = Color(0.099, 0.3, 0.119099975, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7s6e"]
 size = Vector3(50, 1, 50)
 
-[node name="Map" type="Node" unique_id=838226390]
+[node name="Map" type="Node3D" unique_id=1552593155]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2136607353]
 mesh = SubResource("BoxMesh_e6lj2")
+surface_material_override/0 = SubResource("StandardMaterial3D_e6lj2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1690784458]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=303044481]
 shape = SubResource("BoxShape3D_c7s6e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1208499411]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
