@@ -30,9 +30,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_sh265")
 
 [node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "head")]
 script = ExtResource("2_g2els")
-body = NodePath("..")
+body = NodePath("../CharacterBody3D/Body")
 head = NodePath("../CharacterBody3D/Body/Head")
 
-[node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body")]
+[node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body", "rotation_reference")]
 script = ExtResource("3_qhqgy")
 character_body = NodePath("../CharacterBody3D")
+rotation_reference = NodePath("../CharacterBody3D/Body")
