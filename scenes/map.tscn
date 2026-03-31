@@ -1,43 +1,51 @@
 [gd_scene format=3 uid="uid://ducg2yerol3la"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_c7s6e"]
+[ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://scenes/1m_cube.tscn" id="1_4xfga"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xfga"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="BoxMesh" id="BoxMesh_e6lj2"]
+[sub_resource type="BoxMesh" id="BoxMesh_paxxb"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6lj2"]
-albedo_color = Color(0.099, 0.3, 0.119099975, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gldc4"]
+albedo_color = Color(0.08687998, 0.24, 0.081599995, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hrmi8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_paxxb"]
 size = Vector3(4, 4, 4)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4xfga"]
+[sub_resource type="BoxMesh" id="BoxMesh_gldc4"]
 size = Vector3(4, 4, 4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_paxxb"]
-albedo_color = Color(0.3331884, 0.06899427, 0.5526563, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cso3"]
+albedo_color = Color(0.301361, 0.12485526, 0.5368271, 1)
 
 [node name="Map" type="Node3D" unique_id=1552593155]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1690784458]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=303044481]
-shape = SubResource("BoxShape3D_c7s6e")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2136607353]
-mesh = SubResource("BoxMesh_e6lj2")
-surface_material_override/0 = SubResource("StandardMaterial3D_e6lj2")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1208499411]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1690316005]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.35851, 2.580742, 0)
+[node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_4xfga")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=755227044]
-shape = SubResource("BoxShape3D_hrmi8")
+[node name="CollisionShape3D" parent="Floor" index="0" unique_id=1001219435]
+shape = SubResource("BoxShape3D_4xfga")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=404634685]
-mesh = SubResource("BoxMesh_4xfga")
-surface_material_override/0 = SubResource("StandardMaterial3D_paxxb")
+[node name="MeshInstance3D" parent="Floor" index="1" unique_id=1640139046]
+mesh = SubResource("BoxMesh_paxxb")
+surface_material_override/0 = SubResource("StandardMaterial3D_gldc4")
+
+[node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_4xfga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.496243, 1.0010467, 0)
+
+[node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_4xfga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.190289, 2.4622154, 0)
+
+[node name="CollisionShape3D" parent="Cube 2" index="0" unique_id=1001219435]
+shape = SubResource("BoxShape3D_paxxb")
+
+[node name="MeshInstance3D" parent="Cube 2" index="1" unique_id=1640139046]
+mesh = SubResource("BoxMesh_gldc4")
+surface_material_override/0 = SubResource("StandardMaterial3D_0cso3")
+
+[editable path="Floor"]
+[editable path="Cube 2"]
