@@ -5,25 +5,35 @@ extends Node
 @export var rotation_reference: Node3D
 
 @export_group("Options")
-@export var speed : float = 25.0
+@export var speed : float = 8.0
 @export var sprint_multiplier : float = 1.8
-@export var jump_velocity : float = -500.0
+@export var jump_velocity : float = 10.0
 @export var gravity : float = -9.8
 
-func _physics_process(delta):
-	character_body.velocity.y = move_toward(character_body.velocity.y, gravity, delta)
-	
-	var direction2: Vector2 = Input.get_vector("left", "right", "forward", "backward").normalized()
-	# Need to take into account camera direction to calculate proper forward direction
-	var direction = Vector3(direction2.x, 0, direction2.y)
-	var current_speed = speed if !Input.is_action_pressed("sprint") else (speed * sprint_multiplier)
-	
-	var camera_transform = rotation_reference.transform.orthonormalized()
-	direction = camera_transform * Vector3(direction2.x, 0, direction2.y)
-	
-	if direction != Vector3.ZERO:
-		character_body.velocity = direction * current_speed
-		character_body.move_and_slide()
+var velocity_gravity: Vector3
+var velocity_input: Vector3
+var velocity_input_jump: Vector3
 
+func _physics_process(delta):
+	# Calculate movement direction from an oriented rotation_reference
+	var direction2: Vector2 = Input.get_vector("left", "right", "forward", "backward").normalized()
+	var direction3: Vector3 = Vector3(direction2.x, 0, direction2.y)
+	var camera_transform: Transform3D = rotation_reference.transform.orthonormalized()
+	var move_direction: Vector3 = camera_transform * Vector3(direction2.x, 0, direction2.y)
+	
+	# Apply sprint modifiers
+	var modified_speed = speed if !Input.is_action_pressed("sprint") else (speed * sprint_multiplier)
+	
+	# Gravity velocity
+	if not character_body.is_on_floor():
+		velocity_gravity.y += gravity * delta 
+	
+	# Movement velocity
+	velocity_input = move_direction * modified_speed
+
+	# Jump velocity
 	if Input.is_action_just_pressed("jump") and character_body.is_on_floor():
-		character_body.velocity.y = jump_velocity
+		velocity_input_jump.y += jump_velocity
+	
+	character_body.velocity = velocity_gravity + velocity_input + velocity_input_jump
+	character_body.move_and_slide()
