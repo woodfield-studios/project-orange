@@ -35,7 +35,7 @@ mesh = SubResource("BoxMesh_paxxb")
 surface_material_override/0 = SubResource("StandardMaterial3D_gldc4")
 
 [node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_4xfga")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.496243, 1.0010467, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.234577, 1.0010462, -3.616014)
 
 [node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_4xfga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.190289, 2.4622154, 0)
