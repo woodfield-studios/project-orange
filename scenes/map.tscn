@@ -1,7 +1,19 @@
 [gd_scene format=3 uid="uid://ducg2yerol3la"]
 
 [ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://scenes/1m_cube.tscn" id="1_4xfga"]
-[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://Models/Truck.gltf" id="2_paxxb"]
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://assets/models/Truck.gltf" id="2_paxxb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_paxxb"]
+
+[sub_resource type="Sky" id="Sky_paxxb"]
+sky_material = SubResource("ProceduralSkyMaterial_paxxb")
+
+[sub_resource type="Environment" id="Environment_gldc4"]
+background_mode = 2
+sky = SubResource("Sky_paxxb")
+ambient_light_color = Color(1, 0.9607843, 0.8901961, 1)
+ambient_light_sky_contribution = 0.1
+volumetric_fog_density = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xfga"]
 size = Vector3(50, 1, 50)
@@ -21,10 +33,16 @@ size = Vector3(4, 4, 4)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cso3"]
 albedo_color = Color(0.301361, 0.12485526, 0.5368271, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gldc4"]
+size = Vector3(1.236084, 1.410675, 2.5075684)
+
 [node name="Map" type="Node3D" unique_id=1552593155]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1208499411]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 0, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1420350430]
+environment = SubResource("Environment_gldc4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=859039501]
+sky_mode = 2
 
 [node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_4xfga")]
 
@@ -48,8 +66,14 @@ shape = SubResource("BoxShape3D_paxxb")
 mesh = SubResource("BoxMesh_gldc4")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cso3")
 
-[node name="blockbench_export" parent="." unique_id=765805196 instance=ExtResource("2_paxxb")]
-transform = Transform3D(5.012695, 0, 0, 0, 5.012695, 0, 0, 0, 5.012695, -5.7903757, 0.34537983, 9.831365)
+[node name="Truck" type="StaticBody3D" parent="." unique_id=1284207640]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.84270406, -0.304461, 9.0878)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Truck" unique_id=235240152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08898947, 0.958664, -0.17932129)
+shape = SubResource("BoxShape3D_gldc4")
+
+[node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_paxxb")]
 
 [editable path="Floor"]
 [editable path="Cube 2"]
