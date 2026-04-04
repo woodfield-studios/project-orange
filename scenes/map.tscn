@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ducg2yerol3la"]
 
 [ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://scenes/1m_cube.tscn" id="1_4xfga"]
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://Models/Truck.gltf" id="2_paxxb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xfga"]
 size = Vector3(50, 1, 50)
@@ -46,6 +47,9 @@ shape = SubResource("BoxShape3D_paxxb")
 [node name="MeshInstance3D" parent="Cube 2" index="1" unique_id=1640139046]
 mesh = SubResource("BoxMesh_gldc4")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cso3")
+
+[node name="blockbench_export" parent="." unique_id=765805196 instance=ExtResource("2_paxxb")]
+transform = Transform3D(5.012695, 0, 0, 0, 5.012695, 0, 0, 0, 5.012695, -5.7903757, 0.34537983, 9.831365)
 
 [editable path="Floor"]
 [editable path="Cube 2"]
