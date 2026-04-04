@@ -13,7 +13,7 @@ config_version=5
 config/name="ProjectOrange"
 run/main_scene="uid://favpasyapdmb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c12p47xr8pui0"
 
 [display]
 

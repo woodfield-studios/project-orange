@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://crxytg1vf5ovv"
-path="res://.godot/imported/Truck.gltf-ec29477a8de9b04c32ae3f1c386cd403.scn"
+path="res://.godot/imported/Truck.gltf-0a2b834319d64248f25cfa05ff56125b.scn"
 
 [deps]
 
-source_file="res://Models/Truck.gltf"
-dest_files=["res://.godot/imported/Truck.gltf-ec29477a8de9b04c32ae3f1c386cd403.scn"]
+source_file="res://assets/models/Truck.gltf"
+dest_files=["res://.godot/imported/Truck.gltf-0a2b834319d64248f25cfa05ff56125b.scn"]
 
 [params]
 
