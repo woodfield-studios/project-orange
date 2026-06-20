@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://source/scenes/prefabs/1m_cube.tscn" id="1_s55lv"]
 [ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/scenes/prefabs/truck/Truck.gltf" id="2_axlad"]
-[ext_resource type="PackedScene" uid="uid://cr7wham78wcc" path="res://source/scenes/prefabs/lava.tscn" id="3_tk3vx"]
+[ext_resource type="PackedScene" uid="uid://cr7wham78wcc" path="res://source/scenes/prefabs/lava/lava.tscn" id="3_tk3vx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_paxxb"]
 
