@@ -22,16 +22,6 @@ func take_damage(amount: float, source: Node3D = null) -> void:
 	damage_taken.emit(actual_damage, source)
 	health_changed.emit(current_health, max_health)
 
-	print(
-		get_parent().name,
-		" took ",
-		actual_damage,
-		" damage. Health: ",
-		current_health,
-		"/",
-		max_health,
-	)
-
 	if current_health <= 0.0:
 		_handle_death()
 
@@ -53,5 +43,3 @@ func _handle_death() -> void:
 	is_alive = false
 	current_health = 0.0
 	died.emit()
-
-	print(get_parent().name, " died!")
