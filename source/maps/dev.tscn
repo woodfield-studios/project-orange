@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ducg2yerol3la"]
 
-[ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://scenes/1m_cube.tscn" id="1_4xfga"]
-[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://assets/models/Truck.gltf" id="2_paxxb"]
+[ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://source/maps/prefabs/1m_cube.tscn" id="1_s55lv"]
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/maps/prefabs/truck/Truck.gltf" id="2_axlad"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_paxxb"]
 
@@ -44,7 +44,7 @@ environment = SubResource("Environment_gldc4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=859039501]
 sky_mode = 2
 
-[node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_4xfga")]
+[node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_s55lv")]
 
 [node name="CollisionShape3D" parent="Floor" index="0" unique_id=1001219435]
 shape = SubResource("BoxShape3D_4xfga")
@@ -53,10 +53,10 @@ shape = SubResource("BoxShape3D_4xfga")
 mesh = SubResource("BoxMesh_paxxb")
 surface_material_override/0 = SubResource("StandardMaterial3D_gldc4")
 
-[node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_4xfga")]
+[node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_s55lv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.234577, 1.0010462, -3.616014)
 
-[node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_4xfga")]
+[node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_s55lv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.190289, 2.4622154, 0)
 
 [node name="CollisionShape3D" parent="Cube 2" index="0" unique_id=1001219435]
@@ -73,7 +73,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.84270406, -0.304461, 9.0878
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08898947, 0.958664, -0.17932129)
 shape = SubResource("BoxShape3D_gldc4")
 
-[node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_paxxb")]
+[node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_axlad")]
 
 [editable path="Floor"]
 [editable path="Cube 2"]
