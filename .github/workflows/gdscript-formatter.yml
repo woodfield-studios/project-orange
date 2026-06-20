@@ -1,0 +1,23 @@
+name: GDScript Formatter Check
+on: [push, pull_request]
+
+env:
+  GDSCRIPT_FORMATTER_VERSION: "0.20.1"
+
+jobs:
+  gdscript-formatter:
+    name: "GDScript Formatter"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Source Code"
+        uses: actions/checkout@v7
+
+      - name: "Download GDScript Formatter"
+        run: |
+          curl -L -o gdscript-formatter.zip "https://github.com/GDQuest/GDScript-formatter/releases/download/${GDSCRIPT_FORMATTER_VERSION}/gdscript-formatter-${GDSCRIPT_FORMATTER_VERSION}-linux-x86_64.zip"
+          unzip gdscript-formatter.zip -d gdscript-formatter-bin
+          chmod +x gdscript-formatter-bin/gdscript-formatter
+          echo "$GITHUB_WORKSPACE/gdscript-formatter-bin" >> $GITHUB_PATH
+
+      - name: "Check Formatting"
+        run: gdscript-formatter --check source/
