@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxjp2bx0sm8d3"]
 
-[ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/scripts/mouse_camera.gd" id="2_g2els"]
-[ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/scripts/movement.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/entities/player/mouse_camera.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
