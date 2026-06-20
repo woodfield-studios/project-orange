@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cx4pa8inlxxk5"]
+
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/maps/prefabs/truck/Truck.gltf" id="1_dmw01"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gldc4"]
+size = Vector3(1.236084, 1.410675, 2.5075684)
+
+[node name="Truck" type="StaticBody3D" unique_id=1228771299]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1908712192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08898947, 0.958664, -0.17932129)
+shape = SubResource("BoxShape3D_gldc4")
+
+[node name="blockbench_export" parent="." unique_id=608758934 instance=ExtResource("1_dmw01")]
