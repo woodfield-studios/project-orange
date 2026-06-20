@@ -1,4 +1,9 @@
-# Godot 4+ specific ignores
 .godot/
-/android/
-*.TMP
+.import/
+export.cfg
+data_*/
+dist/
+*.vs
+*.tmp
+*blend1
+*.DS_Store
