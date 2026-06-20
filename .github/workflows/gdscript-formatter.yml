@@ -16,7 +16,8 @@ jobs:
         run: |
           curl -L -o gdscript-formatter.zip "https://github.com/GDQuest/GDScript-formatter/releases/download/${GDSCRIPT_FORMATTER_VERSION}/gdscript-formatter-${GDSCRIPT_FORMATTER_VERSION}-linux-x86_64.zip"
           unzip gdscript-formatter.zip -d gdscript-formatter-bin
-          chmod +x gdscript-formatter-bin/gdscript-formatter-${GDSCRIPT_FORMATTER_VERSION}-linux-x86_64
+          chmod +x gdscript-formatter-bin/gdscript-formatter*
+          mv gdscript-formatter-bin/gdscript-formatter* gdscript-formatter-bin/gdscript-formatter
           echo "$GITHUB_WORKSPACE/gdscript-formatter-bin" >> $GITHUB_PATH
 
       - name: "Check Formatting"
