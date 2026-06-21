@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/entities/player/mouse_camera.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
+[ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -41,3 +42,7 @@ rotation_reference = NodePath("../Body")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1877134552]
 script = ExtResource("3_ulyv0")
+
+[node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
+
+[connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
