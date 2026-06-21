@@ -1,21 +1,6 @@
 [gd_scene format=3 uid="uid://cr7wham78wcc"]
 
-[sub_resource type="GDScript" id="GDScript_uyjuf"]
-script/source = "extends StaticBody3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ooki1"]
-size = Vector3(1, 0.1, 1)
+[ext_resource type="Script" uid="uid://csawfl2vcx1jm" path="res://source/scenes/prefabs/lava/lava.gd" id="1_c71ed"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my2un"]
 albedo_color = Color(1, 0, 0, 1)
@@ -24,11 +9,14 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_my2un")
 size = Vector3(1, 0.1, 1)
 
-[node name="Lava" type="StaticBody3D" unique_id=1758649967]
-script = SubResource("GDScript_uyjuf")
+[sub_resource type="BoxShape3D" id="BoxShape3D_ooki1"]
+size = Vector3(1, 0.1, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=608382322]
-shape = SubResource("BoxShape3D_ooki1")
+[node name="Lava" type="StaticBody3D" unique_id=1758649967]
+script = ExtResource("1_c71ed")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1678674413]
 mesh = SubResource("BoxMesh_ooki1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=608382322]
+shape = SubResource("BoxShape3D_ooki1")
