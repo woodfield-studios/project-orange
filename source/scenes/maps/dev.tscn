@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://source/scenes/prefabs/1m_cube.tscn" id="1_s55lv"]
 [ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/scenes/prefabs/truck/Truck.gltf" id="2_axlad"]
 [ext_resource type="PackedScene" uid="uid://cr7wham78wcc" path="res://source/scenes/prefabs/lava/lava.tscn" id="3_tk3vx"]
+[ext_resource type="PackedScene" uid="uid://c1ide354pk2ta" path="res://source/scenes/prefabs/heal/heal.tscn" id="4_t42xy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_paxxb"]
 
@@ -77,7 +78,10 @@ shape = SubResource("BoxShape3D_gldc4")
 [node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_axlad")]
 
 [node name="Lava" parent="." unique_id=1758649967 instance=ExtResource("3_tk3vx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5499999, -7.4665103)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -8)
+
+[node name="Heal" parent="." unique_id=1115148365 instance=ExtResource("4_t42xy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.55, -8)
 
 [editable path="Floor"]
 [editable path="Cube 2"]
