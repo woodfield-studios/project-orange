@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/scripts/mouse_camera.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/scripts/movement.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/player/hunger_component.gd" id="3_ulyv0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -37,3 +38,6 @@ head = NodePath("../CharacterBody3D/Body/Head")
 script = ExtResource("3_qhqgy")
 character_body = NodePath("../CharacterBody3D")
 rotation_reference = NodePath("../CharacterBody3D/Body")
+
+[node name="HungerComponent" type="Node" parent="." unique_id=179345399]
+script = ExtResource("3_ulyv0")
