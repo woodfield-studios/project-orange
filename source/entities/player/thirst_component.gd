@@ -33,3 +33,4 @@ func tick_thirst() -> void:
 
 func quench(amount: int) -> void:
 	current_thirst = min(max_thirst, current_thirst + amount)
+	thirst_changed.emit(current_thirst, max_thirst)
