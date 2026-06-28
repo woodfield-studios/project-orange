@@ -33,3 +33,4 @@ func tick_hunger() -> void:
 
 func sate(amount: int) -> void:
 	current_hunger = min(max_hunger, current_hunger + amount)
+	hunger_changed.emit(current_hunger, max_hunger)
