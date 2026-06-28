@@ -13,3 +13,9 @@ func _on_hunger_component_tick_starve(starve_damage: int) -> void:
 	var health_component: HealthComponent = get_node_or_null("HealthComponent")
 	if health_component and health_component.has_method("take_damage"):
 		health_component.take_damage(starve_damage)
+
+
+func _on_thirst_component_tick_parch(parch_damage: int) -> void:
+	var health_component: HealthComponent = get_node_or_null("HealthComponent")
+	if health_component and health_component.has_method("take_damage"):
+		health_component.take_damage(parch_damage)
