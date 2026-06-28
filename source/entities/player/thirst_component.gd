@@ -13,7 +13,7 @@ var time_elapsed: float = 0.0
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("quench"):
+	if Input.is_action_just_pressed("drink"):
 		quench(10)
 
 	time_elapsed += delta
@@ -33,3 +33,4 @@ func tick_thirst() -> void:
 
 func quench(amount: int) -> void:
 	current_thirst = min(max_thirst, current_thirst + amount)
+	thirst_changed.emit(current_thirst, max_thirst)
