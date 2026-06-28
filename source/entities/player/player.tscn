@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cxjp2bx0sm8d3"]
 
-[ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/scripts/mouse_camera.gd" id="2_g2els"]
-[ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/scripts/movement.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dwv1pak0mvwk6" path="res://source/entities/player/character_body_3d.gd" id="1_jmnk1"]
+[ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/entities/player/mouse_camera.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
+[ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -10,30 +13,36 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
 albedo_color = Color(0.39, 0.1443, 0.1443, 1)
 
-[node name="Player" type="Node3D" unique_id=1587910349]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1214147857]
+script = ExtResource("1_jmnk1")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1214147857]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=80356823]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=80356823]
 shape = SubResource("BoxShape3D_sh265")
 
-[node name="Body" type="Node3D" parent="CharacterBody3D" unique_id=679679266]
+[node name="Body" type="Node3D" parent="." unique_id=679679266]
 
-[node name="Head" type="Node3D" parent="CharacterBody3D/Body" unique_id=1651250686]
+[node name="Head" type="Node3D" parent="Body" unique_id=1651250686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35718477, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Body/Head" unique_id=399287775]
+[node name="Camera3D" type="Camera3D" parent="Body/Head" unique_id=399287775]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/Body" unique_id=659947846]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=659947846]
 mesh = SubResource("BoxMesh_sh265")
 surface_material_override/0 = SubResource("StandardMaterial3D_sh265")
 
 [node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "head")]
 script = ExtResource("2_g2els")
-body = NodePath("../CharacterBody3D/Body")
-head = NodePath("../CharacterBody3D/Body/Head")
+body = NodePath("../Body")
+head = NodePath("../Body/Head")
 
 [node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body", "rotation_reference")]
 script = ExtResource("3_qhqgy")
-character_body = NodePath("../CharacterBody3D")
-rotation_reference = NodePath("../CharacterBody3D/Body")
+character_body = NodePath("..")
+rotation_reference = NodePath("../Body")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1877134552]
+script = ExtResource("3_ulyv0")
+
+[node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
+
+[connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]

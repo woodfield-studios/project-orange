@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://favpasyapdmb"]
 
-[ext_resource type="PackedScene" uid="uid://ducg2yerol3la" path="res://source/maps/dev.tscn" id="2_04mca"]
+[ext_resource type="PackedScene" uid="uid://ducg2yerol3la" path="res://source/scenes/maps/dev.tscn" id="2_04mca"]
 [ext_resource type="PackedScene" uid="uid://cxjp2bx0sm8d3" path="res://source/entities/player/player.tscn" id="2_4ym57"]
 
 [sub_resource type="GDScript" id="GDScript_jyhfs"]
