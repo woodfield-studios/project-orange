@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cx4pa8inlxxk5"]
 
-[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/maps/prefabs/truck/Truck.gltf" id="1_dmw01"]
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/scenes/prefabs/truck/Truck.gltf" id="1_dmw01"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gldc4"]
 size = Vector3(1.236084, 1.410675, 2.5075684)

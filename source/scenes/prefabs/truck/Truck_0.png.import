@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biderrcyiema3"
-path.s3tc="res://.godot/imported/Truck_0.png-d472704b0c33b76fa6489d67ab31ef29.s3tc.ctex"
+path.s3tc="res://.godot/imported/Truck_0.png-100c40fbda3e39976bf0b59694cbeca4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://source/maps/prefabs/truck/Truck_0.png"
-dest_files=["res://.godot/imported/Truck_0.png-d472704b0c33b76fa6489d67ab31ef29.s3tc.ctex"]
+source_file="res://source/scenes/prefabs/truck/Truck_0.png"
+dest_files=["res://.godot/imported/Truck_0.png-100c40fbda3e39976bf0b59694cbeca4.s3tc.ctex"]
 
 [params]
 
