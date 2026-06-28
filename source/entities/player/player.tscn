@@ -56,4 +56,5 @@ script = ExtResource("6_qra10")
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
 [connection signal="hunger_changed" from="HungerComponent" to="HUD" method="_on_hunger_component_hunger_changed"]
 [connection signal="tick_starve" from="HungerComponent" to="." method="_on_hunger_component_tick_starve"]
+[connection signal="thirst_changed" from="ThirstComponent" to="HUD" method="_on_thirst_component_thirst_changed"]
 [connection signal="tick_parch" from="ThirstComponent" to="." method="_on_thirst_component_tick_parch"]

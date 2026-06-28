@@ -29,3 +29,12 @@ offset_right = 70.0
 offset_bottom = 55.0
 theme_override_colors/font_color = Color(0.9592294, 0.5833131, 0.375237, 1)
 text = "100/100"
+
+[node name="Thirst" type="Label" parent="." unique_id=1526682124]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 70.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.34117648, 0.627451, 1, 1)
+text = "100/100"
