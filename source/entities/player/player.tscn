@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
 [ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
+[ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/player/hunger_component.gd" id="6_cs0ah"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -45,4 +46,9 @@ script = ExtResource("3_ulyv0")
 
 [node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
 
+[node name="HungerComponent" type="Node" parent="." unique_id=222788632]
+script = ExtResource("6_cs0ah")
+
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
+[connection signal="hunger_changed" from="HungerComponent" to="HUD" method="_on_hunger_component_hunger_changed"]
+[connection signal="tick_starve" from="HungerComponent" to="." method="_on_hunger_component_tick_starve"]

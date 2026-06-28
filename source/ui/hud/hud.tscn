@@ -18,4 +18,14 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 70.0
 offset_bottom = 31.0
+theme_override_colors/font_color = Color(0.41568628, 1, 0.4862745, 1)
+text = "100/100"
+
+[node name="Hunger" type="Label" parent="." unique_id=924176696]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 70.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.9592294, 0.5833131, 0.375237, 1)
 text = "100/100"
