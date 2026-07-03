@@ -1,5 +1,18 @@
 extends CharacterBody3D
 
+@onready var camera: Camera3D = $Body/Head/Camera3D
+
+@export var player_id: int = 1:
+	set(id):
+		player_id = id
+		$Movement/PlayerInput.set_multiplayer_authority(id)
+
+
+func _ready():
+	if player_id == multiplayer.get_unique_id():
+		camera.current = true
+
+
 func _physics_process(_delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision3D = get_slide_collision(i)
