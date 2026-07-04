@@ -40,9 +40,10 @@ albedo_color = Color(0.301361, 0.12485526, 0.5368271, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gldc4"]
 size = Vector3(1.236084, 1.410675, 2.5075684)
 
-[node name="World" type="Node3D" unique_id=1552593155]
+[node name="World" type="Node3D" unique_id=1552593155 node_paths=PackedStringArray("players")]
 script = ExtResource("1_f2fcx")
 player_scene = ExtResource("2_7nrcw")
+players = NodePath("Players")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1420350430]
 environment = SubResource("Environment_gldc4")

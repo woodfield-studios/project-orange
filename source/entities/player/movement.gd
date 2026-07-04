@@ -1,8 +1,8 @@
 extends Node
 
-@onready var input: MultiplayerSynchronizer = $PlayerInput
-@onready var character_body: CharacterBody3D = $".."
-@onready var rotation_reference: Node3D = $"../Body"
+@export_group("Dependencies")
+@export var character_body: CharacterBody3D
+@export var input: MultiplayerSynchronizer
 
 @export_group("Options")
 @export var speed: float = 8.0
@@ -15,11 +15,13 @@ var velocity_input: Vector3
 var velocity_input_jump: Vector3
 
 
-func _physics_process(delta: float) -> void:
-	# Calculate movement direction from an oriented rotation_reference
+func _physics_process(delta):
+	if not character_body.is_multiplayer_authority():
+		return
+
+	# Calculate movement direction from an oriented character_body
 	var direction3: Vector3 = Vector3(input.direction.x, 0, input.direction.y)
-	var camera_transform: Transform3D = rotation_reference.transform.orthonormalized()
-	var move_direction: Vector3 = camera_transform * direction3
+	var move_direction: Vector3 = character_body.basis * direction3
 
 	# Apply sprint modifiers
 	var modified_speed = speed if not input.is_sprinting else (speed * sprint_multiplier)

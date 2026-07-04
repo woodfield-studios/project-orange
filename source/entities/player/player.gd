@@ -1,11 +1,15 @@
 extends CharacterBody3D
 
-@onready var camera: Camera3D = $Body/Head/Camera3D
+@export var camera: Camera3D
+@export var mouse_camera: Node
+@export var player_input: MultiplayerSynchronizer
+@export var hud: Control
 
 @export var player_id: int = 1:
 	set(id):
 		player_id = id
-		$Movement/PlayerInput.set_multiplayer_authority(id)
+		player_input.set_multiplayer_authority(id)
+		mouse_camera.set_multiplayer_authority(id)
 
 
 func _ready():

@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var player_scene: PackedScene
+@export var players: Node3D
 
 
 func _ready() -> void:
@@ -24,14 +25,14 @@ func add_player(player_id: int):
 	player.position = Vector3(0, 3, 0)
 	player.name = str(player_id)
 
-	$Players.add_child(player, true)
+	players.add_child(player, true)
 
 
 func del_player(player_id: int):
-	if not $Players.has_node(str(player_id)):
+	if not players.has_node(str(player_id)):
 		return
 
-	$Players.get_node(str(player_id)).queue_free()
+	players.get_node(str(player_id)).queue_free()
 
 
 func _exit_tree() -> void:

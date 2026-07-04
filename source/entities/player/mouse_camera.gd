@@ -1,7 +1,7 @@
 extends Node
 
 @export_group("Dependencies")
-@export var body: Node3D
+@export var body: CharacterBody3D
 @export var head: Node3D
 
 @export_group("Options")
@@ -31,6 +31,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func aim_look(event: InputEventMouseMotion) -> void:
+	if not is_multiplayer_authority():
+		return
+
 	var viewport_transform: Transform2D = get_tree().root.get_final_transform()
 	var motion: Vector2 = event.xformed_by(viewport_transform).relative
 	var degrees_per_unit: float = 0.001
@@ -48,7 +51,6 @@ func add_yaw(amount: float) -> void:
 		return
 
 	body.rotate_object_local(Vector3.DOWN, deg_to_rad(amount))
-	body.orthonormalize()
 
 
 func add_pitch(amount: float) -> void:
@@ -56,7 +58,6 @@ func add_pitch(amount: float) -> void:
 		return
 
 	head.rotate_object_local(Vector3.LEFT, deg_to_rad(amount))
-	head.orthonormalize()
 
 
 func clamp_pitch() -> void:
@@ -64,4 +65,3 @@ func clamp_pitch() -> void:
 		return
 
 	head.rotation.x = clamp(head.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
-	head.orthonormalize()
