@@ -6,7 +6,6 @@ extends Node
 
 @export_group("Options")
 @export var speed: float = 8.0
-@export var sprint_multiplier: float = 1.8
 @export var jump_velocity: float = 10.0
 @export var gravity: float = -9.8
 
@@ -23,15 +22,12 @@ func _physics_process(delta):
 	var direction3: Vector3 = Vector3(input.direction.x, 0, input.direction.y)
 	var move_direction: Vector3 = character_body.basis * direction3
 
-	# Apply sprint modifiers
-	var modified_speed = speed if not input.is_sprinting else (speed * sprint_multiplier)
-
 	# Gravity velocity
 	if not character_body.is_on_floor():
 		velocity_gravity.y += gravity * delta
 
 	# Movement velocity
-	velocity_input = move_direction * modified_speed
+	velocity_input = move_direction * speed
 
 	# Jump velocity
 	if input.is_jumping and character_body.is_on_floor():
