@@ -1,6 +1,7 @@
 extends Node
 
 @export var multiplayer_ui: Control
+@export var host_address_input: LineEdit
 @export var initial_scene: PackedScene
 
 const PORT = 8080
@@ -14,7 +15,8 @@ func _on_host_mode_pressed() -> void:
 
 
 func _on_connect_client_pressed() -> void:
-	var ip = "127.0.0.1"
+	var host_address = host_address_input.text
+	var ip = "localhost" if host_address.is_empty() else host_address
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client(ip, PORT)
 	multiplayer.multiplayer_peer = peer
