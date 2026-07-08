@@ -16,7 +16,7 @@ func take_damage(amount: int, source: Node3D = null) -> void:
 	if not is_alive:
 		return
 
-	var actual_damage = max(0, amount)
+	var actual_damage: int = max(0, amount)
 	current_health = max(0, current_health - actual_damage)
 
 	damage_taken.emit(actual_damage, source)
@@ -30,7 +30,7 @@ func heal(amount: int) -> void:
 	if not is_alive:
 		return
 
-	var actual_heal = max(0, amount)
+	var actual_heal: int = max(0, amount)
 	current_health = min(max_health, current_health + actual_heal)
 
 	health_changed.emit(current_health, max_health)

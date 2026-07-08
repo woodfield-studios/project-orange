@@ -15,7 +15,7 @@ var velocity_input: Vector3
 var velocity_input_jump: Vector3
 
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	# Calculate movement direction from an oriented rotation_reference
 	var direction2: Vector2 = Input.get_vector("left", "right", "forward", "backward").normalized()
 	var direction3: Vector3 = Vector3(direction2.x, 0, direction2.y)
@@ -23,7 +23,9 @@ func _physics_process(delta):
 	var move_direction: Vector3 = camera_transform * direction3
 
 	# Apply sprint modifiers
-	var modified_speed = speed if !Input.is_action_pressed("sprint") else (speed * sprint_multiplier)
+	var modified_speed: float = speed
+	if Input.is_action_pressed("sprint"):
+		modified_speed = speed * sprint_multiplier
 
 	# Gravity velocity
 	if not character_body.is_on_floor():
