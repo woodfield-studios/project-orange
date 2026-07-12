@@ -10,11 +10,11 @@ extends Node
 @export_range(1, 100, 1) var mouse_sensitivity: int = 50
 
 
-func _ready():
+func _ready() -> void:
 	Input.set_use_accumulated_input(false)
 
 
-func _unhandled_input(event) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventKey:
 			if event.is_action_pressed("ui_cancel"):
@@ -47,7 +47,7 @@ func aim_look(event: InputEventMouseMotion) -> void:
 	clamp_pitch()
 
 
-func add_yaw(amount) -> void:
+func add_yaw(amount: float) -> void:
 	if is_zero_approx(amount):
 		return
 
@@ -55,7 +55,7 @@ func add_yaw(amount) -> void:
 	body.orthonormalize()
 
 
-func add_pitch(amount) -> void:
+func add_pitch(amount: float) -> void:
 	if is_zero_approx(amount):
 		return
 
