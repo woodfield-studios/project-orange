@@ -1,7 +1,7 @@
 extends MultiplayerSynchronizer
 
-@export var direction := Vector2()
-@export var is_jumping := false
+@export var direction: Vector2 = Vector2()
+@export var is_jumping: bool = false
 
 
 func _ready() -> void:
@@ -16,5 +16,5 @@ func _process(_delta: float) -> void:
 
 
 @rpc("call_local")
-func jump():
+func jump() -> void:
 	is_jumping = true

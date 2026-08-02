@@ -12,7 +12,7 @@ extends CharacterBody3D
 		mouse_camera.set_multiplayer_authority(id)
 
 
-func _ready():
+func _ready() -> void:
 	if player_id == multiplayer.get_unique_id():
 		camera.current = true
 
@@ -20,7 +20,7 @@ func _ready():
 func _physics_process(_delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision3D = get_slide_collision(i)
-		var collider: StaticBody3D = collision.get_collider()
+		var collider: PhysicsBody3D = collision.get_collider()
 
 		if collider.has_method("interact"):
 			collider.interact(self)

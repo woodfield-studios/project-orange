@@ -11,15 +11,15 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(del_player)
 
-	for peer_id in multiplayer.get_peers():
+	for peer_id: int in multiplayer.get_peers():
 		add_player(peer_id)
 
 	if not OS.has_feature("dedicated_server"):
 		add_player(1)
 
 
-func add_player(player_id: int):
-	var player = player_scene.instantiate()
+func add_player(player_id: int) -> void:
+	var player: PhysicsBody3D = player_scene.instantiate()
 
 	player.player_id = player_id
 	player.position = Vector3(0, 3, 0)
@@ -28,7 +28,7 @@ func add_player(player_id: int):
 	players.add_child(player, true)
 
 
-func del_player(player_id: int):
+func del_player(player_id: int) -> void:
 	if not players.has_node(str(player_id)):
 		return
 

@@ -14,7 +14,7 @@ var velocity_input: Vector3
 var velocity_input_jump: Vector3
 
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if not character_body.is_multiplayer_authority():
 		return
 
