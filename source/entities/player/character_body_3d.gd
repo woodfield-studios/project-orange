@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+
 func _physics_process(_delta: float) -> void:
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision3D = get_slide_collision(i)
