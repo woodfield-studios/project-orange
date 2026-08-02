@@ -1,16 +1,46 @@
 [gd_scene format=3 uid="uid://favpasyapdmb"]
 
-[ext_resource type="PackedScene" uid="uid://ducg2yerol3la" path="res://source/scenes/maps/dev.tscn" id="2_04mca"]
-[ext_resource type="PackedScene" uid="uid://cxjp2bx0sm8d3" path="res://source/entities/player/player.tscn" id="2_4ym57"]
+[ext_resource type="Script" uid="uid://bybiydh5e66ik" path="res://source/scenes/main.gd" id="1_5f32h"]
+[ext_resource type="PackedScene" uid="uid://ducg2yerol3la" path="res://source/scenes/maps/dev/dev.tscn" id="2_8dnxx"]
 
-[sub_resource type="GDScript" id="GDScript_jyhfs"]
-script/source = "extends Node
-"
+[node name="Main" type="Node" unique_id=1575594275 node_paths=PackedStringArray("multiplayer_ui", "host_address_input")]
+script = ExtResource("1_5f32h")
+multiplayer_ui = NodePath("MultiplayerUI")
+host_address_input = NodePath("MultiplayerUI/VBoxContainer/LineEdit")
+initial_scene = ExtResource("2_8dnxx")
 
-[node name="World" type="Node" unique_id=1575594275]
-script = SubResource("GDScript_jyhfs")
+[node name="Level" type="Node3D" parent="." unique_id=809810076]
 
-[node name="Player" parent="." unique_id=1497848075 instance=ExtResource("2_4ym57")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.333476, 0)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1159078286]
+_spawnable_scenes = PackedStringArray("uid://ducg2yerol3la")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
 
-[node name="Map" parent="." unique_id=1552593155 instance=ExtResource("2_04mca")]
+[node name="MultiplayerUI" type="Control" parent="." unique_id=2079868275]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerUI" unique_id=1812574434]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 125.0
+offset_bottom = 74.0
+
+[node name="HostMode" type="Button" parent="MultiplayerUI/VBoxContainer" unique_id=1931267468]
+layout_mode = 2
+text = "HostMode"
+
+[node name="ConnectClient" type="Button" parent="MultiplayerUI/VBoxContainer" unique_id=1096942049]
+layout_mode = 2
+text = "ConnectClient"
+
+[node name="LineEdit" type="LineEdit" parent="MultiplayerUI/VBoxContainer" unique_id=220558460]
+layout_mode = 2
+placeholder_text = "Host Address"
+alignment = 1
+
+[connection signal="pressed" from="MultiplayerUI/VBoxContainer/HostMode" to="." method="_on_host_mode_pressed"]
+[connection signal="pressed" from="MultiplayerUI/VBoxContainer/ConnectClient" to="." method="_on_connect_client_pressed"]
