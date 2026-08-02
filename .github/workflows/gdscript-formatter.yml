@@ -2,7 +2,7 @@ name: GDScript Formatter Check
 on: [push, pull_request]
 
 env:
-  GDSCRIPT_FORMATTER_VERSION: "0.20.1"
+  GDSCRIPT_FORMATTER_VERSION: "0.24.0"
 
 jobs:
   gdscript-formatter:
