@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://ducg2yerol3la"]
 
-[ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://source/scenes/prefabs/1m_cube.tscn" id="1_s55lv"]
-[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/scenes/prefabs/truck/Truck.gltf" id="2_axlad"]
-[ext_resource type="PackedScene" uid="uid://cr7wham78wcc" path="res://source/scenes/prefabs/lava/lava.tscn" id="3_tk3vx"]
-[ext_resource type="PackedScene" uid="uid://c1ide354pk2ta" path="res://source/scenes/prefabs/heal/heal.tscn" id="4_t42xy"]
+[ext_resource type="PackedScene" uid="uid://dcx2dj4obyk7" path="res://source/scenes/prefabs/1m_cube.tscn" id="1_a6u48"]
+[ext_resource type="Script" uid="uid://ceh8y25kqi1gu" path="res://source/scenes/maps/dev/dev.gd" id="1_f2fcx"]
+[ext_resource type="PackedScene" uid="uid://cxjp2bx0sm8d3" path="res://source/entities/player/player.tscn" id="2_7nrcw"]
+[ext_resource type="PackedScene" uid="uid://crxytg1vf5ovv" path="res://source/scenes/prefabs/truck/Truck.gltf" id="2_f2fcx"]
+[ext_resource type="PackedScene" uid="uid://cr7wham78wcc" path="res://source/scenes/prefabs/lava/lava.tscn" id="3_7nrcw"]
+[ext_resource type="PackedScene" uid="uid://c1ide354pk2ta" path="res://source/scenes/prefabs/heal/heal.tscn" id="4_emuul"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_paxxb"]
 
@@ -38,7 +40,10 @@ albedo_color = Color(0.301361, 0.12485526, 0.5368271, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gldc4"]
 size = Vector3(1.236084, 1.410675, 2.5075684)
 
-[node name="Map" type="Node3D" unique_id=1552593155]
+[node name="World" type="Node3D" unique_id=1552593155 node_paths=PackedStringArray("players")]
+script = ExtResource("1_f2fcx")
+player_scene = ExtResource("2_7nrcw")
+players = NodePath("Players")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1420350430]
 environment = SubResource("Environment_gldc4")
@@ -46,7 +51,7 @@ environment = SubResource("Environment_gldc4")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=859039501]
 sky_mode = 2
 
-[node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_s55lv")]
+[node name="Floor" parent="." unique_id=1916118466 instance=ExtResource("1_a6u48")]
 
 [node name="CollisionShape3D" parent="Floor" index="0" unique_id=1001219435]
 shape = SubResource("BoxShape3D_4xfga")
@@ -55,10 +60,10 @@ shape = SubResource("BoxShape3D_4xfga")
 mesh = SubResource("BoxMesh_paxxb")
 surface_material_override/0 = SubResource("StandardMaterial3D_gldc4")
 
-[node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_s55lv")]
+[node name="Cube 1" parent="." unique_id=70775795 instance=ExtResource("1_a6u48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.234577, 1.0010462, -3.616014)
 
-[node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_s55lv")]
+[node name="Cube 2" parent="." unique_id=1768891932 instance=ExtResource("1_a6u48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.190289, 2.4622154, 0)
 
 [node name="CollisionShape3D" parent="Cube 2" index="0" unique_id=1001219435]
@@ -75,13 +80,20 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.84270406, -0.304461, 9.0878
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08898947, 0.958664, -0.17932129)
 shape = SubResource("BoxShape3D_gldc4")
 
-[node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_axlad")]
+[node name="blockbench_export" parent="Truck" unique_id=1955911412 instance=ExtResource("2_f2fcx")]
 
-[node name="Lava" parent="." unique_id=1758649967 instance=ExtResource("3_tk3vx")]
+[node name="Lava" parent="." unique_id=1758649967 instance=ExtResource("3_7nrcw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -8)
 
-[node name="Heal" parent="." unique_id=1115148365 instance=ExtResource("4_t42xy")]
+[node name="Heal" parent="." unique_id=1115148365 instance=ExtResource("4_emuul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.55, -8)
+
+[node name="Players" type="Node3D" parent="." unique_id=380348093]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=896187569]
+_spawnable_scenes = PackedStringArray("uid://cxjp2bx0sm8d3")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
 
 [editable path="Floor"]
 [editable path="Cube 2"]

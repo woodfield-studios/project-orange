@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cxjp2bx0sm8d3"]
 
-[ext_resource type="Script" uid="uid://dwv1pak0mvwk6" path="res://source/entities/player/character_body_3d.gd" id="1_jmnk1"]
+[ext_resource type="Script" uid="uid://dwv1pak0mvwk6" path="res://source/entities/player/player.gd" id="1_jmnk1"]
 [ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/entities/player/mouse_camera.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
 [ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
-[ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/player/hunger_component.gd" id="6_cs0ah"]
-[ext_resource type="Script" uid="uid://colrnmdx3o35e" path="res://source/entities/player/thirst_component.gd" id="6_qra10"]
+[ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/components/hunger_component.gd" id="6_cs0ah"]
+[ext_resource type="Script" uid="uid://colrnmdx3o35e" path="res://source/entities/components/thirst_component.gd" id="6_qra10"]
+[ext_resource type="Script" uid="uid://dvi3hgpiv13jr" path="res://source/entities/player/player_input.gd" id="8_c0yew"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
 
@@ -15,32 +16,53 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
 albedo_color = Color(0.39, 0.1443, 0.1443, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1214147857]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gbcmp"]
+properties/0/path = NodePath(".:direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("..:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oudpc"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("camera", "mouse_camera", "player_input", "hud")]
 script = ExtResource("1_jmnk1")
+camera = NodePath("Head/Camera3D")
+mouse_camera = NodePath("MouseCamera")
+player_input = NodePath("PlayerInput")
+hud = NodePath("HUD")
+
+[node name="Head" type="Node3D" parent="." unique_id=1651250686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35718477, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=399287775]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=80356823]
 shape = SubResource("BoxShape3D_sh265")
 
-[node name="Body" type="Node3D" parent="." unique_id=679679266]
-
-[node name="Head" type="Node3D" parent="Body" unique_id=1651250686]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35718477, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Body/Head" unique_id=399287775]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=659947846]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=659947846]
 mesh = SubResource("BoxMesh_sh265")
 surface_material_override/0 = SubResource("StandardMaterial3D_sh265")
 
-[node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "head")]
-script = ExtResource("2_g2els")
-body = NodePath("../Body")
-head = NodePath("../Body/Head")
-
-[node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body", "rotation_reference")]
+[node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body", "input")]
 script = ExtResource("3_qhqgy")
 character_body = NodePath("..")
-rotation_reference = NodePath("../Body")
+input = NodePath("../PlayerInput")
+
+[node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "head")]
+script = ExtResource("2_g2els")
+body = NodePath("..")
+head = NodePath("../Head")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1877134552]
 script = ExtResource("3_ulyv0")
@@ -52,6 +74,14 @@ script = ExtResource("6_cs0ah")
 script = ExtResource("6_qra10")
 
 [node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
+
+[node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=1700642776]
+root_path = NodePath(".")
+replication_config = SubResource("SceneReplicationConfig_gbcmp")
+script = ExtResource("8_c0yew")
+
+[node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=447435011]
+replication_config = SubResource("SceneReplicationConfig_oudpc")
 
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
 [connection signal="hunger_changed" from="HungerComponent" to="HUD" method="_on_hunger_component_hunger_changed"]
