@@ -74,6 +74,7 @@ script = ExtResource("6_cs0ah")
 script = ExtResource("6_qra10")
 
 [node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
+visible = false
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=1700642776]
 root_path = NodePath(".")
