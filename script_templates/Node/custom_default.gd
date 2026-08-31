@@ -1,6 +1,7 @@
 # meta-default: true
 extends _BASE_
 
+
 func _ready() -> void:
 	pass
 
