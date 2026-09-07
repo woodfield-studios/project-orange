@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://oq5haiaynco0"]
 
 [ext_resource type="Script" uid="uid://s5uatjt6qgmx" path="res://source/ui/hud/hud.gd" id="1_fdfx0"]
+[ext_resource type="PackedScene" uid="uid://bjr38jbffifo4" path="res://source/ui/hud/crosshair/crosshair.tscn" id="2_jbctv"]
 
 [node name="HUD" type="Control" unique_id=1839414244]
 layout_mode = 3
@@ -38,3 +39,17 @@ offset_right = 70.0
 offset_bottom = 79.0
 theme_override_colors/font_color = Color(0.34117648, 0.627451, 1, 1)
 text = "100/100"
+
+[node name="Crosshair" parent="." unique_id=783852936 instance=ExtResource("2_jbctv")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bjr38jbffifo4"]
+
+[node name="Crosshair" type="CenterContainer" unique_id=783852936]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1194291405]
+polygon = PackedVector2Array(4, 0, 0, 4, -4, 0, 0, -4)
+uv = PackedVector2Array(-120.00003, -31.999996, -128.00003, -24, -120.00003, -15.999996, -112, -24)
