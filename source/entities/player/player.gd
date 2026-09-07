@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var camera: Camera3D
+@export var viewmodel: Node3D
 @export var mouse_camera: Node
 @export var player_input: MultiplayerSynchronizer
 @export var hud: Control
@@ -14,7 +14,7 @@ extends CharacterBody3D
 
 func _ready() -> void:
 	if player_id == multiplayer.get_unique_id():
-		camera.current = true
+		viewmodel.camera.current = true
 		hud.visible = true
 
 

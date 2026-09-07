@@ -36,8 +36,9 @@ properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("mouse_camera", "player_input", "hud")]
+[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("viewmodel", "mouse_camera", "player_input", "hud")]
 script = ExtResource("1_jmnk1")
+viewmodel = NodePath("Head/Viewmodel")
 mouse_camera = NodePath("MouseCamera")
 player_input = NodePath("PlayerInput")
 hud = NodePath("HUD")
