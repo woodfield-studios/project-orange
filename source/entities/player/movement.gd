@@ -6,12 +6,10 @@ extends Node
 
 @export_group("Options")
 @export var speed: float = 8.0
-@export var jump_velocity: float = 10.0
+@export var jump_velocity: float = 8.0
 @export var gravity: float = -9.8
 
-var velocity_gravity: Vector3
-var velocity_input: Vector3
-var velocity_input_jump: Vector3
+var target_velocity: Vector3 = Vector3.ZERO
 
 
 func _physics_process(delta: float) -> void:
@@ -24,15 +22,16 @@ func _physics_process(delta: float) -> void:
 
 	# Gravity velocity
 	if not character_body.is_on_floor():
-		velocity_gravity.y += gravity * delta
+		target_velocity.y += gravity * delta
 
 	# Movement velocity
-	velocity_input = move_direction * speed
+	target_velocity.x = move_direction.x * speed
+	target_velocity.z = move_direction.z * speed
 
 	# Jump velocity
 	if input.is_jumping and character_body.is_on_floor():
-		velocity_input_jump.y += jump_velocity
+		target_velocity.y = jump_velocity
 		input.is_jumping = false
 
-	character_body.velocity = velocity_gravity + velocity_input + velocity_input_jump
+	character_body.velocity = target_velocity
 	character_body.move_and_slide()
