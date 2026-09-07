@@ -2,6 +2,7 @@ extends MultiplayerSynchronizer
 
 @export var direction: Vector2 = Vector2()
 @export var is_jumping: bool = false
+@export var is_using: bool = false
 
 
 func _ready() -> void:
@@ -14,7 +15,22 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()
 
+	if Input.is_action_pressed("use"):
+		use.rpc()
+	else:
+		unuse.rpc()
+
 
 @rpc("call_local")
 func jump() -> void:
 	is_jumping = true
+
+
+@rpc("call_local")
+func use() -> void:
+	is_using = true
+
+
+@rpc("call_local")
+func unuse() -> void:
+	is_using = false
