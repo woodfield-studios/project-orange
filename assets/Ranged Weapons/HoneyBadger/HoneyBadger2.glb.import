@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://7vr7q3c1h6dc"
-path="res://.godot/imported/HoneyBadger2.glb-160edd2621d728e3213101f6282eb572.scn"
+path="res://.godot/imported/HoneyBadger2.glb-1ebc2e2df744f83679050548bd2015e7.scn"
 
 [deps]
 
-source_file="res://assets/Ranged Weapons/HoneyBadger2.glb"
-dest_files=["res://.godot/imported/HoneyBadger2.glb-160edd2621d728e3213101f6282eb572.scn"]
+source_file="res://assets/Ranged Weapons/HoneyBadger/HoneyBadger2.glb"
+dest_files=["res://.godot/imported/HoneyBadger2.glb-1ebc2e2df744f83679050548bd2015e7.scn"]
 
 [params]
 

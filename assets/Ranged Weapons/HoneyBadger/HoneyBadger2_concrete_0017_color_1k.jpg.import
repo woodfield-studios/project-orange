@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bug5k0s28w586"
-path.s3tc="res://.godot/imported/HoneyBadger2_concrete_0017_roughness_1k.png-81e2b553a753dd0c8f737259b4575836.s3tc.ctex"
+uid="uid://dus0twhfoo66q"
+path.s3tc="res://.godot/imported/HoneyBadger2_concrete_0017_color_1k.jpg-7815aa72d070e4fcd77b1b6c28b722d3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ae71bb73e55a06650ff49f778a571c7b"
+"md5": "62a4d247308b0176a6d79e2a1aad709e"
 }
 
 [deps]
 
-source_file="res://assets/Ranged Weapons/HoneyBadger2_concrete_0017_roughness_1k.png"
-dest_files=["res://.godot/imported/HoneyBadger2_concrete_0017_roughness_1k.png-81e2b553a753dd0c8f737259b4575836.s3tc.ctex"]
+source_file="res://assets/Ranged Weapons/HoneyBadger/HoneyBadger2_concrete_0017_color_1k.jpg"
+dest_files=["res://.godot/imported/HoneyBadger2_concrete_0017_color_1k.jpg-7815aa72d070e4fcd77b1b6c28b722d3.s3tc.ctex"]
 
 [params]
 
