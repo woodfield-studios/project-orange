@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxmudp8wllnaf"]
+
+[ext_resource type="ArrayMesh" uid="uid://c4wjmhtay472q" path="res://assets/meshes/HoneyBadger2_Cube_001.res" id="1_4j8rx"]
+
+[node name="HoneyBadger" type="Node3D" unique_id=1753179181]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=960433316]
+mesh = ExtResource("1_4j8rx")

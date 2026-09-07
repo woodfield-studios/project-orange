@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bsthul8fjfkye"]
 
-[ext_resource type="PackedScene" uid="uid://7vr7q3c1h6dc" path="res://assets/Ranged Weapons/HoneyBadger/HoneyBadger2.glb" id="1_orh6j"]
+[ext_resource type="PackedScene" uid="uid://bxmudp8wllnaf" path="res://assets/Ranged Weapons/HoneyBadger/honey_badger.tscn" id="1_orh6j"]
 
 [node name="Viewmodel" type="Node3D" unique_id=1019053431]
-transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0.25, -0.25, -0.25)
 
-[node name="HoneyBadger" parent="." unique_id=679460365 instance=ExtResource("1_orh6j")]
+[node name="HoneyBadger" parent="." unique_id=1753179181 instance=ExtResource("1_orh6j")]
+transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0.25, -0.25, -0.5)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1229653526]

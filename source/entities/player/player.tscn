@@ -36,17 +36,14 @@ properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("camera", "mouse_camera", "player_input", "hud")]
+[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("mouse_camera", "player_input", "hud")]
 script = ExtResource("1_jmnk1")
-camera = NodePath("Head/Camera3D")
 mouse_camera = NodePath("MouseCamera")
 player_input = NodePath("PlayerInput")
 hud = NodePath("HUD")
 
 [node name="Head" type="Node3D" parent="." unique_id=1651250686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35718477, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=399287775]
 
 [node name="Viewmodel" parent="Head" unique_id=1019053431 instance=ExtResource("2_oudpc")]
 
