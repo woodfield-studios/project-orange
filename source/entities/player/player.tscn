@@ -38,15 +38,13 @@ properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("viewmodel", "mouse_camera", "player_input", "hud")]
 script = ExtResource("1_jmnk1")
-viewmodel = NodePath("Head/Viewmodel")
+viewmodel = NodePath("Viewmodel")
 mouse_camera = NodePath("MouseCamera")
 player_input = NodePath("PlayerInput")
 hud = NodePath("HUD")
 
-[node name="Head" type="Node3D" parent="." unique_id=1651250686]
+[node name="Viewmodel" parent="." unique_id=1019053431 instance=ExtResource("2_oudpc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35718477, 0)
-
-[node name="Viewmodel" parent="Head" unique_id=1019053431 instance=ExtResource("2_oudpc")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=80356823]
 shape = SubResource("BoxShape3D_sh265")
@@ -60,10 +58,10 @@ script = ExtResource("3_qhqgy")
 character_body = NodePath("..")
 input = NodePath("../PlayerInput")
 
-[node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "head")]
+[node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "viewmodel")]
 script = ExtResource("2_g2els")
 body = NodePath("..")
-head = NodePath("../Head")
+viewmodel = NodePath("../Viewmodel")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1877134552]
 script = ExtResource("3_ulyv0")

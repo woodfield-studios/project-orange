@@ -2,7 +2,7 @@ extends Node
 
 @export_group("Dependencies")
 @export var body: CharacterBody3D
-@export var head: Node3D
+@export var viewmodel: Node3D
 
 @export_group("Options")
 @export var max_pitch: float = 89.0
@@ -57,11 +57,11 @@ func add_pitch(amount: float) -> void:
 	if is_zero_approx(amount):
 		return
 
-	head.rotate_object_local(Vector3.LEFT, deg_to_rad(amount))
+	viewmodel.rotate_object_local(Vector3.LEFT, deg_to_rad(amount))
 
 
 func clamp_pitch() -> void:
-	if head.rotation.x > deg_to_rad(min_pitch) and head.rotation.x < deg_to_rad(max_pitch):
+	if viewmodel.rotation.x > deg_to_rad(min_pitch) and viewmodel.rotation.x < deg_to_rad(max_pitch):
 		return
 
-	head.rotation.x = clamp(head.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
+	viewmodel.rotation.x = clamp(viewmodel.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
