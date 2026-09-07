@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	# Jump velocity
 	if input.is_jumping and character_body.is_on_floor():
 		target_velocity.y = jump_velocity
-		input.is_jumping = false
+	input.is_jumping = false
 
 	character_body.velocity = target_velocity
 	character_body.move_and_slide()
