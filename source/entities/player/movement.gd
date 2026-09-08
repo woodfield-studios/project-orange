@@ -2,7 +2,7 @@ extends Node
 
 @export_group("Dependencies")
 @export var character_body: CharacterBody3D
-@export var input: MultiplayerSynchronizer
+@export var player_input: MultiplayerSynchronizer
 
 @export_group("Options")
 @export var speed: float = 8.0
@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Calculate movement direction from an oriented character_body
-	var direction3: Vector3 = Vector3(input.direction.x, 0, input.direction.y)
+	var direction3: Vector3 = Vector3(player_input.direction.x, 0, player_input.direction.y)
 	var move_direction: Vector3 = character_body.basis * direction3
 
 	# Gravity velocity
@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 	target_velocity.z = move_direction.z * speed
 
 	# Jump velocity
-	if input.is_jumping and character_body.is_on_floor():
+	if player_input.is_jumping and character_body.is_on_floor():
 		target_velocity.y = jump_velocity
-	input.is_jumping = false
+	player_input.is_jumping = false
 
 	character_body.velocity = target_velocity
 	character_body.move_and_slide()
