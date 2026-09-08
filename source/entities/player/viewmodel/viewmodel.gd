@@ -13,4 +13,4 @@ func update_equipped(new_equipment: Equipment) -> void:
 	hands.add_child(new_equipment_node)
 
 func use() -> void:
-	pass
+	print("Using!")
