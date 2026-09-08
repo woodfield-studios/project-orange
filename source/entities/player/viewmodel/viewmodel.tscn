@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsthul8fjfkye"]
 
 [ext_resource type="PackedScene" uid="uid://bxmudp8wllnaf" path="res://assets/Ranged Weapons/HoneyBadger/honey_badger.tscn" id="1_orh6j"]
-[ext_resource type="Script" uid="uid://cc5i0ojpgonse" path="res://source/entities/player/viewmodel.gd" id="1_tdm70"]
+[ext_resource type="Script" uid="uid://cc5i0ojpgonse" path="res://source/entities/player/viewmodel/viewmodel.gd" id="1_tdm70"]
 
 [node name="Viewmodel" type="Node3D" unique_id=1019053431 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_tdm70")
