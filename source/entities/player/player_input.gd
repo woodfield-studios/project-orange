@@ -15,10 +15,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		jump.rpc()
 
-	if Input.is_action_pressed("use"):
+	if Input.is_action_just_pressed("use"):
 		use.rpc()
-	else:
-		unuse.rpc()
 
 
 @rpc("call_local")
@@ -29,8 +27,3 @@ func jump() -> void:
 @rpc("call_local")
 func use() -> void:
 	is_using = true
-
-
-@rpc("call_local")
-func unuse() -> void:
-	is_using = false
