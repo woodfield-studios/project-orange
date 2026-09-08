@@ -4,6 +4,7 @@ extends Node
 signal hunger_changed(new_hunger: int, max_hunger: int)
 signal tick_starve(starve_damage: int)
 
+@export_group("Options")
 @export var max_hunger: int = 100
 @export var hunger_rate: float = 0.1
 @export var starve_damage: int = 1

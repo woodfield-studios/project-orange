@@ -5,6 +5,7 @@ signal health_changed(new_health: int, max_health: int)
 signal damage_taken(amount: int, source: Node3D)
 signal died()
 
+@export_group("Options")
 @export var max_health: int = 100
 @export var start_at_max: bool = true
 

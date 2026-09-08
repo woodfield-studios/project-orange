@@ -4,6 +4,7 @@ extends Node
 signal thirst_changed(new_thirst: int, max_thirst: int)
 signal tick_parch(parch_damage: int)
 
+@export_group("Options")
 @export var max_thirst: int = 100
 @export var thirst_rate: float = 0.2
 @export var parch_damage: int = 1
