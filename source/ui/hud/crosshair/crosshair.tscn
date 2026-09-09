@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjr38jbffifo4"]
 
 [node name="Crosshair" type="CenterContainer" unique_id=783852936]
+custom_maximum_size = Vector2(0, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 
