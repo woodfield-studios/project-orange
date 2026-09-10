@@ -27,10 +27,6 @@ func _physics_process(_delta: float) -> void:
 		if collider.has_method("interact"):
 			collider.interact(self)
 
-	if player_input.is_using:
-		viewmodel.use()
-	player_input.is_using = false
-
 
 func _on_hunger_component_tick_starve(starve_damage: int) -> void:
 	var health_component: HealthComponent = get_node_or_null("HealthComponent")
