@@ -2,15 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cc5i0ojpgonse" path="res://source/entities/player/viewmodel/viewmodel.gd" id="1_tdm70"]
 
-[node name="Viewmodel" type="Node3D" unique_id=1019053431 node_paths=PackedStringArray("camera", "hands")]
+[node name="Viewmodel" type="Node3D" unique_id=1019053431 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_tdm70")
 camera = NodePath("Camera3D")
-hands = NodePath("Hands")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1229653526]
-
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1036712648]
-target_position = Vector3(0, 0, -100)
-
-[node name="Hands" type="Node3D" parent="." unique_id=1084041567]
-transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0.25, -0.25, -0.5)
