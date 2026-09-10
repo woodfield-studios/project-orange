@@ -12,5 +12,6 @@ func equip(new_equipment: Equipment) -> void:
 	var new_equipment_node: Node3D = new_equipment.scene.instantiate()
 	hands.add_child(new_equipment_node)
 
+
 func use() -> void:
 	print("Using!")
