@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Equipment" format=3 uid="uid://l1hv83hu24r0"]
 
-[ext_resource type="PackedScene" uid="uid://dyiglrovicsd6" path="res://source/entities/player/equipment/honey_badger/honey_badger.tscn" id="1_3ngc4"]
+[ext_resource type="PackedScene" uid="uid://kcgk48qux2yh" path="res://source/entities/player/equipment/honey_badger/equipped/honey_badger_equipped.tscn" id="1_3ngc4"]
 [ext_resource type="Script" uid="uid://degbaqlxgvb17" path="res://source/entities/player/equipment/equipment.gd" id="1_yd1db"]
 
 [resource]
 script = ExtResource("1_yd1db")
 name = "Honey Badger"
 description = "7.62x35mm - A lightweight AR-pattern rifle, complete with a silencer."
-scene = ExtResource("1_3ngc4")
+equipped_scene = ExtResource("1_3ngc4")
 metadata/_custom_type_script = "uid://degbaqlxgvb17"
