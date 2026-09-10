@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kcgk48qux2yh"]
 
-[ext_resource type="Script" uid="uid://ch7jtjyt50jjs" path="res://source/entities/player/equipment/honey_badger/equipped/honey_badger_equipped.gd" id="1_if3ke"]
-[ext_resource type="PackedScene" uid="uid://dyiglrovicsd6" path="res://source/entities/player/equipment/honey_badger/honey_badger.tscn" id="2_fx3ed"]
+[ext_resource type="Script" uid="uid://ch7jtjyt50jjs" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/equipped/honey_badger_equipped.gd" id="1_if3ke"]
+[ext_resource type="PackedScene" uid="uid://dyiglrovicsd6" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/honey_badger.tscn" id="2_fx3ed"]
 
 [node name="HoneyBadgerEquipped" type="Node3D" unique_id=2002085744]
 script = ExtResource("1_if3ke")

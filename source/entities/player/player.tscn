@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dwv1pak0mvwk6" path="res://source/entities/player/player.gd" id="1_jmnk1"]
 [ext_resource type="Script" uid="uid://ds1l5xrner75k" path="res://source/entities/player/mouse_camera.gd" id="2_g2els"]
-[ext_resource type="Resource" uid="uid://l1hv83hu24r0" path="res://source/entities/player/equipment/honey_badger/honey_badger.tres" id="2_gbcmp"]
+[ext_resource type="Resource" uid="uid://l1hv83hu24r0" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/honey_badger.tres" id="2_gbcmp"]
 [ext_resource type="PackedScene" uid="uid://bsthul8fjfkye" path="res://source/entities/player/viewmodel/viewmodel.tscn" id="2_oudpc"]
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Equipment" format=3 uid="uid://l1hv83hu24r0"]
 
-[ext_resource type="PackedScene" uid="uid://kcgk48qux2yh" path="res://source/entities/player/equipment/honey_badger/equipped/honey_badger_equipped.tscn" id="1_3ngc4"]
+[ext_resource type="PackedScene" uid="uid://kcgk48qux2yh" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/equipped/honey_badger_equipped.tscn" id="1_3ngc4"]
 [ext_resource type="Script" uid="uid://degbaqlxgvb17" path="res://source/entities/player/equipment/equipment.gd" id="1_yd1db"]
 
 [resource]
