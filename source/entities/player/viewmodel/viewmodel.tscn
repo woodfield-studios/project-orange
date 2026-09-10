@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cc5i0ojpgonse" path="res://source/entities/player/viewmodel/viewmodel.gd" id="1_tdm70"]
 
-[node name="Viewmodel" type="Node3D" unique_id=1019053431 node_paths=PackedStringArray("camera")]
+[node name="Viewmodel" type="Node3D" unique_id=1019053431 node_paths=PackedStringArray("camera", "equipped_viewmodels")]
 script = ExtResource("1_tdm70")
 camera = NodePath("Camera3D")
+equipped_viewmodels = NodePath("EquippedViewmodels")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1229653526]
 
-[node name="Equipped" type="Node3D" parent="." unique_id=439746251]
+[node name="EquippedViewmodels" type="Node3D" parent="." unique_id=439746251]

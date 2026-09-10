@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var mouse_camera: Node
 @export var player_input: MultiplayerSynchronizer
 @export var hud: Control
+@export var current_equipment: Equipment
 
 @export var player_id: int = 1:
 	set(id):
@@ -16,6 +17,7 @@ func _ready() -> void:
 	if player_id == multiplayer.get_unique_id():
 		viewmodel.camera.current = true
 		viewmodel.visible = true
+		viewmodel.equipped = current_equipment
 		hud.visible = true
 
 
