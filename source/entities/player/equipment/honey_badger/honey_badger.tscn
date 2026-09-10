@@ -2,5 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://3xhp1eobr378" path="res://assets/meshes/HoneyBadger2_Cube_001.res" id="1_mcqux"]
 
-[node name="HoneyBadger" type="MeshInstance3D" unique_id=681753770]
+[node name="HoneyBadger" type="Node3D" unique_id=342393701]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=681753770]
 mesh = ExtResource("1_mcqux")
