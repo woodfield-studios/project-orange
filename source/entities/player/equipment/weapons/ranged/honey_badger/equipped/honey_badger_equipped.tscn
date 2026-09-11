@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ch7jtjyt50jjs" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/equipped/honey_badger_equipped.gd" id="1_if3ke"]
 [ext_resource type="PackedScene" uid="uid://dyiglrovicsd6" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/honey_badger.tscn" id="2_fx3ed"]
+[ext_resource type="PackedScene" uid="uid://c2saw6kjr1udr" path="res://source/entities/player/equipment/weapons/ranged/bullet_hole.tscn" id="2_k5c16"]
 
-[node name="HoneyBadgerEquipped" type="Node3D" unique_id=2002085744]
+[node name="HoneyBadgerEquipped" type="Node3D" unique_id=2002085744 node_paths=PackedStringArray("raycast")]
 script = ExtResource("1_if3ke")
+raycast = NodePath("RayCast3D")
+bullet_hole_scene = ExtResource("2_k5c16")
 
 [node name="HoneyBadger" parent="." unique_id=681753770 instance=ExtResource("2_fx3ed")]
 transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0.25, -0.25, -0.5)

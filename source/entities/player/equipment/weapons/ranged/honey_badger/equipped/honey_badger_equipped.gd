@@ -10,6 +10,12 @@ func use() -> void:
 		var collision_normal: Vector3 = raycast.get_collision_normal()
 		var collision_point: Vector3 = raycast.get_collision_point()
 		var bullet_hole: Node3D = bullet_hole_scene.instantiate()
-		var orientation_point: Vector3 = collision_point + collision_normal
-		bullet_hole.look_at_from_position(collision_point, orientation_point)
+
 		collider.add_child(bullet_hole)
+
+		bullet_hole.global_position = collision_point
+		if collision_normal != Vector3.UP:
+			var orientation_point: Vector3 = collision_point + collision_normal
+			bullet_hole.look_at(orientation_point)
+		else:
+			bullet_hole.rotate_x(-90.0)
