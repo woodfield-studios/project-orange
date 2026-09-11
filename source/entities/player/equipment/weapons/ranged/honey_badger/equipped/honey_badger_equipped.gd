@@ -2,6 +2,7 @@ extends Node3D
 
 @export var raycast: RayCast3D
 @export var bullet_hole_scene: PackedScene
+@export var audio: AudioStreamPlayer3D
 
 
 func use() -> void:
@@ -19,3 +20,4 @@ func use() -> void:
 			bullet_hole.look_at(orientation_point)
 		else:
 			bullet_hole.rotate_x(-90.0)
+	audio.play()
