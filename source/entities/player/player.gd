@@ -13,6 +13,11 @@ extends CharacterBody3D
 		mouse_camera.set_multiplayer_authority(id)
 
 
+@rpc("any_peer", "call_local")
+func use_equipment() -> void:
+	viewmodel.use_equipped()
+
+
 func _ready() -> void:
 	if player_id == multiplayer.get_unique_id():
 		viewmodel.camera.current = true
@@ -30,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 			collider.interact(self)
 
 	if player_input.is_using and player_id == multiplayer.get_unique_id():
-		viewmodel.use_equipped()
+		use_equipment.rpc()
 		player_input.is_using = false
 
 
