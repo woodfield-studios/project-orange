@@ -24,6 +24,6 @@ func jump() -> void:
 	is_jumping = true
 
 
-@rpc("call_local")
+@rpc("any_peer", "call_local")
 func use() -> void:
 	is_using = true
