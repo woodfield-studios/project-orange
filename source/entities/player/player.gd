@@ -16,7 +16,6 @@ extends CharacterBody3D
 func _ready() -> void:
 	if player_id == multiplayer.get_unique_id():
 		viewmodel.camera.current = true
-		viewmodel.visible = true
 		viewmodel.equipped = current_equipment
 		hud.visible = true
 
