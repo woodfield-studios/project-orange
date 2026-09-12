@@ -4,13 +4,68 @@
 [ext_resource type="ArrayMesh" uid="uid://3xhp1eobr378" path="res://assets/meshes/HoneyBadger2_Cube_001.res" id="1_mcqux"]
 [ext_resource type="AudioStream" uid="uid://bvi3r87r3w44l" path="res://source/entities/player/equipment/weapons/ranged/gunshot.wav" id="3_xp1ty"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7numd"]
+[sub_resource type="Shader" id="Shader_e4jjl"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+instance uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 0.0);
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xp1ty"]
 resource_local_to_scene = true
-transparency = 1
-albedo_color = Color(1, 1, 1, 0)
+render_priority = 0
+shader = SubResource("Shader_e4jjl")
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d0u6y"]
-material = SubResource("StandardMaterial3D_7numd")
+material = SubResource("ShaderMaterial_xp1ty")
 
 [sub_resource type="Animation" id="Animation_wqk7a"]
 length = 0.001
@@ -31,7 +86,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/MuzzlePoint/MuzzleFlashMesh:mesh:material:albedo_color")
+tracks/2/path = NodePath("MeshInstance3D/MuzzlePoint/MuzzleFlashMesh:instance_shader_parameters/albedo")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -62,7 +117,7 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.03333334, 1, 0, 0, 0.0087
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D/MuzzlePoint/MuzzleFlashMesh:mesh:material:albedo_color")
+tracks/2/path = NodePath("MeshInstance3D/MuzzlePoint/MuzzleFlashMesh:instance_shader_parameters/albedo")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -89,6 +144,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.38, 0.36, -0.01)
 
 [node name="MuzzleFlashMesh" type="MeshInstance3D" parent="MeshInstance3D/MuzzlePoint" unique_id=764986430]
 transform = Transform3D(-4.371139e-09, 1, 0, -0.1, -4.371139e-08, 0, 0, 0, 0.1, 1, 0, 0)
+instance_shader_parameters/albedo = Color(1, 1, 1, 0)
 mesh = SubResource("CapsuleMesh_d0u6y")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1054989200]
