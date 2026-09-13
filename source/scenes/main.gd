@@ -9,7 +9,9 @@ const PORT: int = 8080
 
 func _on_host_mode_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_server(PORT)
+	var err: Error = peer.create_server(PORT)
+	if err:
+		printerr(error_string(err))
 	multiplayer.multiplayer_peer = peer
 	start_game()
 
@@ -18,7 +20,9 @@ func _on_connect_client_pressed() -> void:
 	var host_address: String = host_address_input.text
 	var ip: String = "localhost" if host_address.is_empty() else host_address
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	peer.create_client(ip, PORT)
+	var err: Error = peer.create_client(ip, PORT)
+	if err:
+		printerr(error_string(err))
 	multiplayer.multiplayer_peer = peer
 	start_game()
 
