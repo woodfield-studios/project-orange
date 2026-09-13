@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export_group("Dependencies")
+@export var name_tag: Label3D
 @export var viewmodel: Node3D
 @export var mouse_camera: Node
 @export var player_input: MultiplayerSynchronizer
@@ -9,6 +11,7 @@ extends CharacterBody3D
 @export var player_id: int = 1:
 	set(id):
 		player_id = id
+		name_tag.text = str(id)
 		player_input.set_multiplayer_authority(id)
 		mouse_camera.set_multiplayer_authority(id)
 
