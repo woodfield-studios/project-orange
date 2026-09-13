@@ -2,6 +2,7 @@ extends Node
 
 @export var multiplayer_ui: Control
 @export var host_address_input: LineEdit
+@export var port_input: LineEdit
 @export var initial_scene: PackedScene
 
 const PORT: int = 8080
@@ -9,7 +10,7 @@ const PORT: int = 8080
 
 func _on_host_mode_pressed() -> void:
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	var err: Error = peer.create_server(PORT)
+	var err: Error = peer.create_server(int(port_input.text) if port_input.text else PORT)
 	if err:
 		printerr(error_string(err))
 	multiplayer.multiplayer_peer = peer
@@ -20,7 +21,7 @@ func _on_connect_client_pressed() -> void:
 	var host_address: String = host_address_input.text
 	var ip: String = "localhost" if host_address.is_empty() else host_address
 	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
-	var err: Error = peer.create_client(ip, PORT)
+	var err: Error = peer.create_client(ip, int(port_input.text) if port_input.text else PORT)
 	if err:
 		printerr(error_string(err))
 	multiplayer.multiplayer_peer = peer

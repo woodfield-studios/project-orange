@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://bybiydh5e66ik" path="res://source/scenes/main.gd" id="1_5f32h"]
 [ext_resource type="PackedScene" uid="uid://ducg2yerol3la" path="res://source/scenes/maps/dev/dev.tscn" id="2_8dnxx"]
 
-[node name="Main" type="Node" unique_id=1575594275 node_paths=PackedStringArray("multiplayer_ui", "host_address_input")]
+[node name="Main" type="Node" unique_id=1575594275 node_paths=PackedStringArray("multiplayer_ui", "host_address_input", "port_input")]
 script = ExtResource("1_5f32h")
 multiplayer_ui = NodePath("MultiplayerUI")
-host_address_input = NodePath("MultiplayerUI/VBoxContainer/LineEdit")
+host_address_input = NodePath("MultiplayerUI/VBoxContainer/HostAddressInput")
+port_input = NodePath("MultiplayerUI/VBoxContainer/PortInput")
 initial_scene = ExtResource("2_8dnxx")
 
 [node name="Level" type="Node3D" parent="." unique_id=809810076]
@@ -37,10 +38,16 @@ text = "HostMode"
 layout_mode = 2
 text = "ConnectClient"
 
-[node name="LineEdit" type="LineEdit" parent="MultiplayerUI/VBoxContainer" unique_id=220558460]
+[node name="HostAddressInput" type="LineEdit" parent="MultiplayerUI/VBoxContainer" unique_id=220558460]
 layout_mode = 2
 placeholder_text = "Host Address"
 alignment = 1
+
+[node name="PortInput" type="LineEdit" parent="MultiplayerUI/VBoxContainer" unique_id=526047204]
+layout_mode = 2
+placeholder_text = "Port"
+alignment = 1
+max_length = 5
 
 [connection signal="pressed" from="MultiplayerUI/VBoxContainer/HostMode" to="." method="_on_host_mode_pressed"]
 [connection signal="pressed" from="MultiplayerUI/VBoxContainer/ConnectClient" to="." method="_on_connect_client_pressed"]
