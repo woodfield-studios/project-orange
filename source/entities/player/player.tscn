@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/components/hunger_component.gd" id="6_cs0ah"]
 [ext_resource type="Script" uid="uid://colrnmdx3o35e" path="res://source/entities/components/thirst_component.gd" id="6_qra10"]
 [ext_resource type="Script" uid="uid://dvi3hgpiv13jr" path="res://source/entities/player/player_input.gd" id="8_c0yew"]
+[ext_resource type="AudioStream" uid="uid://cdpgss0vnno08" path="res://source/entities/player/groan.wav" id="11_23xah"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3smw8"]
 
@@ -85,6 +86,10 @@ script = ExtResource("8_c0yew")
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=447435011]
 replication_config = SubResource("SceneReplicationConfig_oudpc")
 
+[node name="Groan" type="AudioStreamPlayer3D" parent="." unique_id=1211787417]
+stream = ExtResource("11_23xah")
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
 [connection signal="hunger_changed" from="HungerComponent" to="HUD" method="_on_hunger_component_hunger_changed"]
 [connection signal="tick_starve" from="HungerComponent" to="." method="_on_hunger_component_tick_starve"]
