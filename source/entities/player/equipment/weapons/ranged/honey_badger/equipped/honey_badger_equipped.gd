@@ -20,5 +20,6 @@ func use() -> void:
 			bullet_hole.look_at(orientation_point)
 		else:
 			bullet_hole.rotate_x(-90.0)
+
 	honey_badger.play_audio()
 	honey_badger.play_animation()
