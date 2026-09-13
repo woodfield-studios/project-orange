@@ -21,5 +21,9 @@ func use() -> void:
 		else:
 			bullet_hole.rotate_x(-90.0)
 
+		var health_component: HealthComponent = collider.get_node_or_null("HealthComponent")
+		if health_component:
+			health_component.take_damage(5, honey_badger)
+
 	honey_badger.play_audio()
 	honey_badger.play_animation()
