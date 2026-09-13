@@ -9,6 +9,7 @@ script = ExtResource("1_if3ke")
 honey_badger = NodePath("HoneyBadger")
 raycast = NodePath("RayCast3D")
 bullet_hole_scene = ExtResource("2_k5c16")
+damage = 5
 
 [node name="HoneyBadger" parent="." unique_id=681753770 instance=ExtResource("2_fx3ed")]
 transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0.25, -0.25, -0.5)

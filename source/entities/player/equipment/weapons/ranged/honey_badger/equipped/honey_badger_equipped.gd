@@ -1,8 +1,12 @@
 extends Node3D
 
+@export_group("Dependencies")
 @export var honey_badger: Node3D
 @export var raycast: RayCast3D
 @export var bullet_hole_scene: PackedScene
+
+@export_group("Options")
+@export var damage: int
 
 
 func use() -> void:
@@ -12,10 +16,11 @@ func use() -> void:
 
 		var health_component: HealthComponent = collider.get_node_or_null("HealthComponent")
 		if health_component:
-			health_component.take_damage(5, honey_badger)
+			health_component.take_damage(damage, honey_badger)
 
 	honey_badger.play_audio()
 	honey_badger.play_animation()
+
 
 func _create_bullet_hole(collider: Node3D) -> void:
 	var collision_normal: Vector3 = raycast.get_collision_normal()
