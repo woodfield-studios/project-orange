@@ -42,8 +42,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_health_component_depleted() -> void:
-	var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
-	add_child(death_screen)
+	if is_own_client:
+		var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
+		add_child(death_screen)
+		player_input.set_process(false)
+		$Groan.play()
 	visible = false
-	player_input.set_process(false)
-	$Groan.play()
+	$CollisionShape3D.disabled = true
