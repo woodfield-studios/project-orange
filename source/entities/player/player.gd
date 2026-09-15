@@ -15,9 +15,13 @@ extends CharacterBody3D
 		player_input.set_multiplayer_authority(id)
 		mouse_camera.set_multiplayer_authority(id)
 
+var is_own_client: bool:
+	get():
+		return player_id == multiplayer.get_unique_id()
+
 
 func _ready() -> void:
-	if player_id == multiplayer.get_unique_id():
+	if is_own_client:
 		viewmodel.camera.current = true
 		hud.visible = true
 
