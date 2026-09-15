@@ -50,4 +50,8 @@ func _on_thirst_component_tick_parch(parch_damage: int) -> void:
 
 
 func _on_health_component_depleted() -> void:
+	var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
+	add_child(death_screen)
+	visible = false
+	player_input.set_process(false)
 	$Groan.play()
