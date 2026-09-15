@@ -3,18 +3,18 @@ extends Node
 
 signal health_changed(new_health: int, max_health: int)
 signal damage_taken(amount: int, source: Node3D)
-signal died()
+signal depleted()
 
 @export_group("Options")
 @export var max_health: int = 100
 @export var start_at_max: bool = true
 
 var current_health: int = max_health
-var is_alive: bool = true
+var is_depleted: bool = false
 
 
 func take_damage(amount: int, source: Node3D = null) -> void:
-	if not is_alive:
+	if is_depleted:
 		return
 
 	var actual_damage: int = max(0, amount)
@@ -24,11 +24,11 @@ func take_damage(amount: int, source: Node3D = null) -> void:
 	health_changed.emit(current_health, max_health)
 
 	if current_health <= 0:
-		_handle_death()
+		_handle_depleted()
 
 
 func heal(amount: int) -> void:
-	if not is_alive:
+	if is_depleted:
 		return
 
 	var actual_heal: int = max(0, amount)
@@ -37,10 +37,10 @@ func heal(amount: int) -> void:
 	health_changed.emit(current_health, max_health)
 
 
-func _handle_death() -> void:
-	if not is_alive:
+func _handle_depleted() -> void:
+	if is_depleted:
 		return
 
-	is_alive = false
+	is_depleted = true
 	current_health = 0
-	died.emit()
+	depleted.emit()

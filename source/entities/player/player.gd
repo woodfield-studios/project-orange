@@ -49,5 +49,5 @@ func _on_thirst_component_tick_parch(parch_damage: int) -> void:
 		health_component.take_damage(parch_damage)
 
 
-func _on_health_component_died() -> void:
+func _on_health_component_depleted() -> void:
 	$Groan.play()
