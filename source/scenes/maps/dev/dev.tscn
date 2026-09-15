@@ -20,10 +20,10 @@ ambient_light_sky_contribution = 0.1
 volumetric_fog_density = 0.01
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4xfga"]
-size = Vector3(50, 1, 50)
+size = Vector3(500, 1, 500)
 
 [sub_resource type="BoxMesh" id="BoxMesh_paxxb"]
-size = Vector3(50, 1, 50)
+size = Vector3(500, 1, 500)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gldc4"]
 albedo_color = Color(0.08687998, 0.24, 0.081599995, 1)
