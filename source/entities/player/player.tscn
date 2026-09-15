@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://bbdb58ltqtftd" path="res://source/entities/player/movement.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
 [ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
-[ext_resource type="Script" uid="uid://b3kfc1xf1pch6" path="res://source/entities/components/hunger_component.gd" id="6_cs0ah"]
-[ext_resource type="Script" uid="uid://colrnmdx3o35e" path="res://source/entities/components/thirst_component.gd" id="6_qra10"]
 [ext_resource type="Script" uid="uid://dvi3hgpiv13jr" path="res://source/entities/player/player_input.gd" id="8_c0yew"]
 [ext_resource type="AudioStream" uid="uid://cdpgss0vnno08" path="res://source/entities/player/groan.wav" id="11_23xah"]
 
@@ -74,12 +72,6 @@ viewmodel = NodePath("../Viewmodel")
 [node name="HealthComponent" type="Node" parent="." unique_id=1877134552]
 script = ExtResource("3_ulyv0")
 
-[node name="HungerComponent" type="Node" parent="." unique_id=222788632]
-script = ExtResource("6_cs0ah")
-
-[node name="ThirstComponent" type="Node" parent="." unique_id=875625361]
-script = ExtResource("6_qra10")
-
 [node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
 visible = false
 
@@ -96,7 +88,3 @@ stream = ExtResource("11_23xah")
 
 [connection signal="depleted" from="HealthComponent" to="." method="_on_health_component_depleted"]
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
-[connection signal="hunger_changed" from="HungerComponent" to="HUD" method="_on_hunger_component_hunger_changed"]
-[connection signal="tick_starve" from="HungerComponent" to="." method="_on_hunger_component_tick_starve"]
-[connection signal="thirst_changed" from="ThirstComponent" to="HUD" method="_on_thirst_component_thirst_changed"]
-[connection signal="tick_parch" from="ThirstComponent" to="." method="_on_thirst_component_tick_parch"]

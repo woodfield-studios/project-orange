@@ -37,18 +37,6 @@ func _physics_process(_delta: float) -> void:
 		player_input.is_using = false
 
 
-func _on_hunger_component_tick_starve(starve_damage: int) -> void:
-	var health_component: HealthComponent = get_node_or_null("HealthComponent")
-	if health_component and health_component.has_method("take_damage"):
-		health_component.take_damage(starve_damage)
-
-
-func _on_thirst_component_tick_parch(parch_damage: int) -> void:
-	var health_component: HealthComponent = get_node_or_null("HealthComponent")
-	if health_component and health_component.has_method("take_damage"):
-		health_component.take_damage(parch_damage)
-
-
 func _on_health_component_depleted() -> void:
 	var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
 	add_child(death_screen)
