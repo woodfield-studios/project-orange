@@ -85,6 +85,7 @@ replication_config = SubResource("SceneReplicationConfig_gbcmp")
 script = ExtResource("8_c0yew")
 
 [node name="ServerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=447435011]
+process_mode = 4
 replication_config = SubResource("SceneReplicationConfig_oudpc")
 
 [node name="Groan" type="AudioStreamPlayer3D" parent="." unique_id=1211787417]
