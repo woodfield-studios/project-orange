@@ -16,7 +16,7 @@ extends CharacterBody3D
 		mouse_camera.set_multiplayer_authority(id)
 
 var is_own_client: bool:
-	get():
+	get ():
 		return player_id == multiplayer.get_unique_id()
 
 
