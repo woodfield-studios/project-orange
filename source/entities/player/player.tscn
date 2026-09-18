@@ -63,6 +63,7 @@ mesh = SubResource("CapsuleMesh_hy80t")
 surface_material_override/0 = SubResource("StandardMaterial3D_sh265")
 
 [node name="Movement" type="Node" parent="." unique_id=1340240121 node_paths=PackedStringArray("character_body", "player_input")]
+process_mode = 4
 script = ExtResource("3_qhqgy")
 character_body = NodePath("..")
 player_input = NodePath("../PlayerInput")
