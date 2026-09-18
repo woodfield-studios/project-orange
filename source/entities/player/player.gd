@@ -4,23 +4,32 @@ extends CharacterBody3D
 @export var name_tag: Label3D
 @export var viewmodel: Node3D
 @export var mouse_camera: Node
-@export var player_input: MultiplayerSynchronizer
+@export var rollback_synchronizer: RollbackSynchronizer
+@export var input: PlayerInput
 @export var hud: Control
 @export var current_equipment: Equipment
+@export_group("Options")
+@export var speed: float = 8.0
 
-@export var player_id: int = 1:
+const gravity: float = 9.8
+
+@export var peer_id: int = 1:
 	set(id):
-		player_id = id
+		peer_id = id
 		name_tag.text = str(id)
-		player_input.set_multiplayer_authority(id)
 		mouse_camera.set_multiplayer_authority(id)
 
 var is_own_client: bool:
 	get ():
-		return player_id == multiplayer.get_unique_id()
+		return peer_id == multiplayer.get_unique_id()
 
 
 func _ready() -> void:
+	await get_tree().process_frame
+	
+	set_multiplayer_authority(1)
+	input.set_multiplayer_authority(peer_id)
+	rollback_synchronizer.process_settings()
 	if is_own_client:
 		viewmodel.camera.current = true
 		hud.visible = true
@@ -28,7 +37,20 @@ func _ready() -> void:
 	viewmodel.equipped = current_equipment
 
 
-func _physics_process(_delta: float) -> void:
+func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
+	var direction3: Vector3 = Vector3(input.direction.x, 0.0, input.direction.y)
+	var horizontal_velocity: Vector3 = direction3.normalized() * speed
+	velocity.x = horizontal_velocity.x
+	velocity.z = horizontal_velocity.z
+
+	_force_update_is_on_floor()
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	velocity *= NetworkTime.physics_factor
+	move_and_slide()
+	velocity /= NetworkTime.physics_factor
+
 	for i: int in get_slide_collision_count():
 		var collision: KinematicCollision3D = get_slide_collision(i)
 		var collider: PhysicsBody3D = collision.get_collider()
@@ -36,16 +58,24 @@ func _physics_process(_delta: float) -> void:
 		if collider.has_method("interact"):
 			collider.interact(self)
 
-	if player_input.is_using:
-		viewmodel.use_equipped()
-		player_input.is_using = false
+#
+#if input.is_using:
+#viewmodel.use_equipped()
+#input.is_using = false
+
+
+func _force_update_is_on_floor() -> void:
+	var old_velocity: Vector3 = velocity
+	velocity = Vector3.ZERO
+	move_and_slide()
+	velocity = old_velocity
 
 
 func _on_health_component_depleted() -> void:
 	if is_own_client:
 		var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
 		add_child(death_screen)
-		player_input.set_process(false)
+		input.set_process(false)
 		$Groan.play()
 	visible = false
 	$CollisionShape3D.disabled = true

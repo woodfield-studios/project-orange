@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="3_ulyv0"]
 [ext_resource type="PackedScene" uid="uid://oq5haiaynco0" path="res://source/ui/hud/hud.tscn" id="5_twrsn"]
 [ext_resource type="Script" uid="uid://dvi3hgpiv13jr" path="res://source/entities/player/player_input.gd" id="8_c0yew"]
+[ext_resource type="Script" uid="uid://gbdjfg0j0klh" path="res://source/entities/player/input.gd" id="8_gbcmp"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="9_23xah"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="9_l8qm6"]
 [ext_resource type="AudioStream" uid="uid://cdpgss0vnno08" path="res://source/entities/player/groan.wav" id="11_23xah"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3smw8"]
@@ -39,12 +42,13 @@ properties/2/path = NodePath("HealthComponent:current_health")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("name_tag", "viewmodel", "mouse_camera", "player_input", "hud")]
+[node name="Player" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("name_tag", "viewmodel", "mouse_camera", "rollback_synchronizer", "input", "hud")]
 script = ExtResource("1_jmnk1")
 name_tag = NodePath("NameTag")
 viewmodel = NodePath("Viewmodel")
 mouse_camera = NodePath("MouseCamera")
-player_input = NodePath("PlayerInput")
+rollback_synchronizer = NodePath("RollbackSynchronizer")
+input = NodePath("Input")
 hud = NodePath("HUD")
 current_equipment = ExtResource("2_gbcmp")
 
@@ -78,6 +82,22 @@ script = ExtResource("3_ulyv0")
 
 [node name="HUD" parent="." unique_id=1839414244 instance=ExtResource("5_twrsn")]
 visible = false
+
+[node name="RollbackSynchronizer" type="Node" parent="." unique_id=1178863064 node_paths=PackedStringArray("root")]
+script = ExtResource("9_23xah")
+root = NodePath("..")
+state_properties = Array[String]([":global_transform"])
+input_properties = Array[String](["Input:direction"])
+metadata/_custom_type_script = "uid://d350u8evihs1u"
+
+[node name="TickInterpolator" type="Node" parent="." unique_id=558911800 node_paths=PackedStringArray("root")]
+script = ExtResource("9_l8qm6")
+root = NodePath("..")
+properties = Array[String]([":global_transform"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"
+
+[node name="Input" type="Node" parent="." unique_id=451636893]
+script = ExtResource("8_gbcmp")
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=1700642776]
 process_mode = 4
