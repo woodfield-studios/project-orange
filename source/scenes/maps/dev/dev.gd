@@ -21,7 +21,7 @@ func _ready() -> void:
 func add_player(player_id: int) -> void:
 	var player: PhysicsBody3D = player_scene.instantiate()
 
-	player.player_id = player_id
+	player.peer_id = player_id
 	player.position = Vector3(0, 3, 0)
 	player.name = str(player_id)
 
