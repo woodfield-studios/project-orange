@@ -79,6 +79,7 @@ script = ExtResource("3_ulyv0")
 visible = false
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=1700642776]
+process_mode = 4
 root_path = NodePath(".")
 replication_config = SubResource("SceneReplicationConfig_gbcmp")
 script = ExtResource("8_c0yew")
