@@ -73,6 +73,7 @@ character_body = NodePath("..")
 player_input = NodePath("../PlayerInput")
 
 [node name="MouseCamera" type="Node" parent="." unique_id=1864122482 node_paths=PackedStringArray("body", "viewmodel")]
+process_mode = 4
 script = ExtResource("2_g2els")
 body = NodePath("..")
 viewmodel = NodePath("../Viewmodel")
@@ -86,8 +87,8 @@ visible = false
 [node name="RollbackSynchronizer" type="Node" parent="." unique_id=1178863064 node_paths=PackedStringArray("root")]
 script = ExtResource("9_23xah")
 root = NodePath("..")
-state_properties = Array[String]([":global_transform"])
-input_properties = Array[String](["Input:direction"])
+state_properties = Array[String]([":global_transform", ":velocity"])
+input_properties = Array[String](["Input:direction", "Input:jump", "Input:use"])
 metadata/_custom_type_script = "uid://d350u8evihs1u"
 
 [node name="TickInterpolator" type="Node" parent="." unique_id=558911800 node_paths=PackedStringArray("root")]
@@ -98,6 +99,7 @@ metadata/_custom_type_script = "uid://dour8fehaaugp"
 
 [node name="Input" type="Node" parent="." unique_id=451636893]
 script = ExtResource("8_gbcmp")
+sensitivity = null
 
 [node name="PlayerInput" type="MultiplayerSynchronizer" parent="." unique_id=1700642776]
 process_mode = 4

@@ -10,6 +10,9 @@ extends CharacterBody3D
 @export var current_equipment: Equipment
 @export_group("Options")
 @export var speed: float = 8.0
+@export var jump_velocity: float = 8.0
+@export var max_pitch: float = 89.0
+@export var min_pitch: float = -89.0
 
 const gravity: float = 9.8
 
@@ -17,34 +20,39 @@ const gravity: float = 9.8
 	set(id):
 		peer_id = id
 		name_tag.text = str(id)
-		mouse_camera.set_multiplayer_authority(id)
 
 var is_own_client: bool:
-	get ():
+	get():
 		return peer_id == multiplayer.get_unique_id()
 
 
 func _ready() -> void:
 	await get_tree().process_frame
-	
+
 	set_multiplayer_authority(1)
 	input.set_multiplayer_authority(peer_id)
+	mouse_camera.set_multiplayer_authority(peer_id)
 	rollback_synchronizer.process_settings()
+
 	if is_own_client:
 		viewmodel.camera.current = true
 		hud.visible = true
-
 	viewmodel.equipped = current_equipment
 
 
 func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
-	var direction3: Vector3 = Vector3(input.direction.x, 0.0, input.direction.y)
+	_mouse_look()
+
+	var direction3: Vector3 = basis * Vector3(input.direction.x, 0.0, input.direction.y)
 	var horizontal_velocity: Vector3 = direction3.normalized() * speed
 	velocity.x = horizontal_velocity.x
 	velocity.z = horizontal_velocity.z
 
 	_force_update_is_on_floor()
-	if not is_on_floor():
+	if is_on_floor():
+		if input.jump:
+			velocity.y = jump_velocity
+	else:
 		velocity.y -= gravity * delta
 
 	velocity *= NetworkTime.physics_factor
@@ -58,17 +66,18 @@ func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
 		if collider.has_method("interact"):
 			collider.interact(self)
 
-#
-#if input.is_using:
-#viewmodel.use_equipped()
-#input.is_using = false
-
 
 func _force_update_is_on_floor() -> void:
 	var old_velocity: Vector3 = velocity
 	velocity = Vector3.ZERO
 	move_and_slide()
 	velocity = old_velocity
+
+
+func _mouse_look() -> void:
+	rotate_object_local(Vector3(0, 1, 0), input.look_angle.x)
+	viewmodel.rotate_object_local(Vector3(1, 0, 0), input.look_angle.y)
+	viewmodel.rotation.x = clamp(viewmodel.rotation.x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 
 
 func _on_health_component_depleted() -> void:
