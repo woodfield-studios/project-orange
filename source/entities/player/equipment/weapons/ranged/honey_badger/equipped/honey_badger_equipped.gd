@@ -6,11 +6,22 @@ extends NetworkWeaponHitscan3D
 @export var bullet_hole_scene: PackedScene
 
 @export_group("Options")
-@export var damage: int
+@export var damage: int = 10
+@export var rounds_per_minute: int = 800
+@export var max_ammo: int = 30
+
+var ammo: int = max_ammo
+
+var _cooldown_timer_seconds: float = Constants.SECONDS_PER_MINUTE / rounds_per_minute
+var _on_cooldown: bool = false
 
 
 func use() -> void:
 	fire()
+
+
+func _can_fire() -> bool:
+	return not _on_cooldown and ammo > 0
 
 
 func _on_fire() -> void:
@@ -19,7 +30,11 @@ func _on_fire() -> void:
 
 
 func _after_fire() -> void:
-	await get_tree().create_timer(cooldown_timer_seconds).timeout
+	ammo -= 1
+
+	_on_cooldown = true
+	await get_tree().create_timer(_cooldown_timer_seconds).timeout
+	_on_cooldown = false
 
 
 func _on_hit(result: Dictionary) -> void:
