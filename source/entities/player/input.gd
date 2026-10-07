@@ -10,8 +10,19 @@ const SENSITIVITY_COEFFICIENT: float = 0.001
 var yaw: float = 0.0
 var pitch: float = 0.0
 var direction: Vector2 = Vector2.ZERO
+
 var jump: bool = false
+var _jump_buffer: bool = false
+
 var use: bool = false
+
+
+func _ready() -> void:
+	super()
+	NetworkTime.after_tick.connect(
+		func(_dt: float, _t: float) -> void:
+			_gather_always(),
+	)
 
 
 func _notification(what: int) -> void:
@@ -37,8 +48,15 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+	if event.is_action_pressed("jump"):
+		_jump_buffer = true
+
 
 func _gather() -> void:
 	direction = Input.get_vector("left", "right", "forward", "backward")
-	jump = Input.is_action_pressed("jump")
 	use = Input.is_action_pressed("use")
+
+
+func _gather_always() -> void:
+	jump = _jump_buffer
+	_jump_buffer = false
