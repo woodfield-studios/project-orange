@@ -1,4 +1,4 @@
-extends Node3D
+extends NetworkWeaponHitscan3D
 
 @export_group("Dependencies")
 @export var honey_badger: Node3D
@@ -10,16 +10,26 @@ extends Node3D
 
 
 func use() -> void:
-	var collider: Node3D = raycast.get_collider()
+	fire()
+
+
+func _on_fire() -> void:
+	honey_badger.play_audio()
+	honey_badger.play_animation()
+
+
+func _after_fire() -> void:
+	await get_tree().create_timer(cooldown_timer_seconds).timeout
+
+
+func _on_hit(result: Dictionary) -> void:
+	var collider: Node3D = result.collider
 	if collider:
 		_create_bullet_hole(collider)
 
 		var health_component: HealthComponent = collider.get_node_or_null("HealthComponent")
 		if health_component:
 			health_component.take_damage(damage, honey_badger)
-
-	honey_badger.play_audio()
-	honey_badger.play_animation()
 
 
 func _create_bullet_hole(collider: Node3D) -> void:
