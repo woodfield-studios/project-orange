@@ -53,6 +53,9 @@ func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
 	else:
 		velocity.y -= gravity * delta
 
+	if input.use:
+		viewmodel.use_equipped()
+
 	velocity *= NetworkTime.physics_factor
 	move_and_slide()
 	velocity /= NetworkTime.physics_factor
