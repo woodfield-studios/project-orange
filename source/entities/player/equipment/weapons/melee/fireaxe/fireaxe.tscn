@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://5gmtdr4vilkk"]
+
+[ext_resource type="PackedScene" uid="uid://32yk0oxv2uir" path="res://assets/Melee Weapons/fireaxe/fireaxe.glb" id="1_nltvj"]
+
+[node name="Fireaxe" type="Node3D" unique_id=253885150]
+
+[node name="FireaxeModel" parent="." unique_id=826891320 instance=ExtResource("1_nltvj")]

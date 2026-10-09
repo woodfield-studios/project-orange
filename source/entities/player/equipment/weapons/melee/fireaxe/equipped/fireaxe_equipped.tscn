@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bksvgnn35vde7"]
+
+[ext_resource type="PackedScene" uid="uid://5gmtdr4vilkk" path="res://source/entities/player/equipment/weapons/melee/fireaxe/fireaxe.tscn" id="1_hoxah"]
+
+[node name="FireaxeEquipped" type="Node3D" unique_id=2143992364]
+
+[node name="Fireaxe" parent="." unique_id=253885150 instance=ExtResource("1_hoxah")]
+transform = Transform3D(-6.181724e-09, -6.181724e-09, -0.2, -0.14142136, 0.14142136, 0, 0.14142136, 0.14142136, -8.742278e-09, 0.5, -0.25, -0.5)

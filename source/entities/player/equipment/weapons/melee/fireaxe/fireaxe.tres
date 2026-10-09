@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Equipment" format=3 uid="uid://dosyi15sr0hiy"]
+
+[ext_resource type="Script" uid="uid://degbaqlxgvb17" path="res://source/entities/player/equipment/equipment.gd" id="1_au6yy"]
+[ext_resource type="PackedScene" uid="uid://bksvgnn35vde7" path="res://source/entities/player/equipment/weapons/melee/fireaxe/equipped/fireaxe_equipped.tscn" id="1_r2kt8"]
+
+[resource]
+script = ExtResource("1_au6yy")
+name = "Fireaxe"
+description = "A trusty fireaxe."
+equipped_scene = ExtResource("1_r2kt8")
+metadata/_custom_type_script = "uid://degbaqlxgvb17"
