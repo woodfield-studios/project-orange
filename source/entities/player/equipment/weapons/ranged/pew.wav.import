@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bvi3r87r3w44l"
-path="res://.godot/imported/gunshot.wav-b03b67f705346cd3d989ee86e714c7c9.sample"
+path="res://.godot/imported/pew.wav-5edc13c055769cb483b07a40314ff76a.sample"
 
 [deps]
 
-source_file="res://source/entities/player/equipment/weapons/ranged/gunshot.wav"
-dest_files=["res://.godot/imported/gunshot.wav-b03b67f705346cd3d989ee86e714c7c9.sample"]
+source_file="res://source/entities/player/equipment/weapons/ranged/pew.wav"
+dest_files=["res://.godot/imported/pew.wav-5edc13c055769cb483b07a40314ff76a.sample"]
 
 [params]
 

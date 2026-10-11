@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtod3s5in7dlr" path="res://source/entities/player/equipment/weapons/ranged/honey_badger/honey_badger.gd" id="1_e4jjl"]
 [ext_resource type="ArrayMesh" uid="uid://3xhp1eobr378" path="res://assets/meshes/HoneyBadger2_Cube_001.res" id="1_mcqux"]
-[ext_resource type="AudioStream" uid="uid://bvi3r87r3w44l" path="res://source/entities/player/equipment/weapons/ranged/gunshot.wav" id="3_xp1ty"]
+[ext_resource type="AudioStream" uid="uid://bvi3r87r3w44l" path="res://source/entities/player/equipment/weapons/ranged/pew.wav" id="3_xp1ty"]
 
 [sub_resource type="Shader" id="Shader_e4jjl"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.
