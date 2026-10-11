@@ -9,7 +9,7 @@ signal depleted()
 @export var max_health: int = 100
 @export var current_health: int = max_health:
 	set(new_health):
-		health_changed.emit(current_health, max_health)
+		health_changed.emit(new_health, max_health)
 		current_health = max(0, new_health)
 		if current_health <= 0:
 			_handle_depleted()
