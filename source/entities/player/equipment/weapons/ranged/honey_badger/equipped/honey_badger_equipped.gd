@@ -36,9 +36,13 @@ func _after_fire() -> void:
 		ammo -= 1
 
 	_on_cooldown = true
-	var cooldown: float = Constants.SECONDS_PER_MINUTE / rounds_per_minute
+	var cooldown: float = _get_cooldown()
 	await get_tree().create_timer(cooldown).timeout
 	_on_cooldown = false
+
+
+func _get_cooldown() -> float:
+	return Constants.SECONDS_PER_MINUTE / rounds_per_minute
 
 
 func _on_hit(result: Dictionary) -> void:
