@@ -4,29 +4,50 @@
 
 [sub_resource type="Animation" id="Animation_nltvj"]
 resource_name = "RESET"
+length = 0.001
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("FireaxeModel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("FireaxeModel")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array()
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.38268343, 0.92387956)
+
+[sub_resource type="Animation" id="Animation_b78l5"]
+resource_name = "attack"
+length = 0.25
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireaxeModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.23333333, 1, 0, 0, 8)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireaxeModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.5, 0, 0, 0.8660254, 0.23333333, 1, -0.35355338, 0.61237246, 0.3535534, 0.6123724)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b78l5"]
 _data = {
-&"RESET": SubResource("Animation_nltvj")
+&"RESET": SubResource("Animation_nltvj"),
+&"attack": SubResource("Animation_b78l5")
 }
 
 [node name="Fireaxe" type="Node3D" unique_id=253885150]
 
 [node name="FireaxeModel" parent="." unique_id=826891320 instance=ExtResource("1_nltvj")]
+transform = Transform3D(0.7071068, 0.7071067, 0, -0.7071067, 0.7071068, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=127641332]
 libraries/ = SubResource("AnimationLibrary_b78l5")
