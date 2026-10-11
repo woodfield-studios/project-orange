@@ -3,16 +3,12 @@
 [ext_resource type="Script" uid="uid://bjkkn6641yna" path="res://source/entities/player/equipment/weapons/melee/fireaxe/equipped/fireaxe_equipped.gd" id="1_awkue"]
 [ext_resource type="PackedScene" uid="uid://5gmtdr4vilkk" path="res://source/entities/player/equipment/weapons/melee/fireaxe/fireaxe.tscn" id="1_hoxah"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_awkue"]
 
-[node name="FireaxeEquipped" type="Node3D" unique_id=2143992364]
+[node name="FireaxeEquipped" type="Node3D" unique_id=2143992364 node_paths=PackedStringArray("fireaxe")]
 script = ExtResource("1_awkue")
-damage = null
-attack_speed = null
+fireaxe = NodePath("Fireaxe")
+shapecast_shape = SubResource("BoxShape3D_awkue")
 
 [node name="Fireaxe" parent="." unique_id=253885150 instance=ExtResource("1_hoxah")]
 transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.5, -0.25, -0.5)
-
-[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1005535712]
-shape = SubResource("BoxShape3D_yf5fn")
-target_position = Vector3(0, 0, -1)
