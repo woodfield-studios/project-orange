@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://286gau8wioan" path="res://source/entities/player/equipment/weapons/melee/fireaxe/fireaxe.gd" id="1_b78l5"]
 [ext_resource type="PackedScene" uid="uid://32yk0oxv2uir" path="res://assets/Melee Weapons/fireaxe/fireaxe.glb" id="1_nltvj"]
+[ext_resource type="AudioStream" uid="uid://cg5bguqbhg6lc" path="res://source/entities/player/equipment/weapons/melee/fireaxe/swing.wav" id="2_b78l5"]
 
 [sub_resource type="Animation" id="Animation_nltvj"]
 resource_name = "RESET"
@@ -53,5 +54,8 @@ transform = Transform3D(0.7071068, 0.7071067, 0, -0.7071067, 0.7071068, 0, 0, 0,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=127641332]
 libraries/ = SubResource("AnimationLibrary_b78l5")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=287759081]
+stream = ExtResource("2_b78l5")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
