@@ -76,7 +76,7 @@ func _apply_data(data: Dictionary) -> void:
 	# Create a PhysicsShapeQueryParameters3D object.
 	var shape_params: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
 	shape_params.shape = shape_query_shape
-	shape_params.transform.origin = direction.normalized()
+	shape_params.transform.origin = origin + direction.normalized()
 
 	# Set collision masks or exclude objects:
 	shape_params.collision_mask = collision_mask
