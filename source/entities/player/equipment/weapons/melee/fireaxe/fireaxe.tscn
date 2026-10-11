@@ -2,6 +2,31 @@
 
 [ext_resource type="PackedScene" uid="uid://32yk0oxv2uir" path="res://assets/Melee Weapons/fireaxe/fireaxe.glb" id="1_nltvj"]
 
+[sub_resource type="Animation" id="Animation_nltvj"]
+resource_name = "RESET"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireaxeModel")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireaxeModel")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array()
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b78l5"]
+_data = {
+&"RESET": SubResource("Animation_nltvj")
+}
+
 [node name="Fireaxe" type="Node3D" unique_id=253885150]
 
 [node name="FireaxeModel" parent="." unique_id=826891320 instance=ExtResource("1_nltvj")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=127641332]
+libraries/ = SubResource("AnimationLibrary_b78l5")

@@ -10,15 +10,25 @@ extends Node3D
 
 
 func use() -> void:
-	_attack()
+	attack()
 
 
-func _attack() -> void:
+func attack() -> bool:
 	if not _can_attack():
-		return
+		return false
 
-	print("Attacking with fireaxe!")
+	_on_attack()
+	_after_attack()
+	return true
 
 
 func _can_attack() -> bool:
 	return true
+
+
+func _on_attack() -> void:
+	pass
+
+
+func _after_attack() -> void:
+	pass
