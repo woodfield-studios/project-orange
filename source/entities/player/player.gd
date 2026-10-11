@@ -12,8 +12,6 @@ extends CharacterBody3D
 @export var speed: float = 8.0
 @export var jump_velocity: float = 8.0
 
-const gravity: float = 9.8
-
 @export var peer_id: int = 1:
 	set(id):
 		peer_id = id
@@ -51,7 +49,7 @@ func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
 		if input.jump:
 			velocity.y = jump_velocity
 	else:
-		velocity.y -= gravity * delta
+		velocity.y -= Constants.GRAVITY * delta
 
 	if input.use:
 		viewmodel.use_equipped()
