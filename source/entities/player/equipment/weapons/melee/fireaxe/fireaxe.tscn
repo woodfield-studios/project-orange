@@ -53,3 +53,5 @@ transform = Transform3D(0.7071068, 0.7071067, 0, -0.7071067, 0.7071068, 0, 0, 0,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=127641332]
 libraries/ = SubResource("AnimationLibrary_b78l5")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
