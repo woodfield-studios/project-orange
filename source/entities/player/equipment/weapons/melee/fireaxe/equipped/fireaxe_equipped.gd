@@ -63,7 +63,7 @@ func _get_data() -> Dictionary:
 
 
 func _apply_data(data: Dictionary) -> void:
-	# Reproduces the firing event on all peers.
+	# Reproduces the attacking event on all peers.
 	var origin: Vector3 = data["origin"] as Vector3
 	var direction: Vector3 = data["direction"] as Vector3
 
