@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://5gmtdr4vilkk"]
 
+[ext_resource type="Script" uid="uid://286gau8wioan" path="res://source/entities/player/equipment/weapons/melee/fireaxe/fireaxe.gd" id="1_b78l5"]
 [ext_resource type="PackedScene" uid="uid://32yk0oxv2uir" path="res://assets/Melee Weapons/fireaxe/fireaxe.glb" id="1_nltvj"]
 
 [sub_resource type="Animation" id="Animation_nltvj"]
@@ -21,7 +22,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -0.38268343, 0.92387956)
 
 [sub_resource type="Animation" id="Animation_b78l5"]
-resource_name = "attack"
+resource_name = "use"
 length = 0.25
 tracks/0/type = "position_3d"
 tracks/0/imported = false
@@ -41,10 +42,11 @@ tracks/1/keys = PackedFloat32Array(0, 1, -0.5, 0, 0, 0.8660254, 0.23333333, 1, -
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b78l5"]
 _data = {
 &"RESET": SubResource("Animation_nltvj"),
-&"attack": SubResource("Animation_b78l5")
+&"use": SubResource("Animation_b78l5")
 }
 
 [node name="Fireaxe" type="Node3D" unique_id=253885150]
+script = ExtResource("1_b78l5")
 
 [node name="FireaxeModel" parent="." unique_id=826891320 instance=ExtResource("1_nltvj")]
 transform = Transform3D(0.7071068, 0.7071067, 0, -0.7071067, 0.7071068, 0, 0, 0, 1, 0, 0, 0)

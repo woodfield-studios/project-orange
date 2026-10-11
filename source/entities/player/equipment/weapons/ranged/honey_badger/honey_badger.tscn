@@ -97,7 +97,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_q57fq"]
-resource_name = "shoot"
+resource_name = "use"
 length = 0.1
 step = 0.016666668
 tracks/0/type = "position_3d"
@@ -130,7 +130,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e4jjl"]
 _data = {
 &"RESET": SubResource("Animation_wqk7a"),
-&"shoot": SubResource("Animation_q57fq")
+&"use": SubResource("Animation_q57fq")
 }
 
 [node name="HoneyBadger" type="Node3D" unique_id=342393701]

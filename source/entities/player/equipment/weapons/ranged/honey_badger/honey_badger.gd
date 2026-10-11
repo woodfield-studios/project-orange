@@ -9,4 +9,4 @@ func play_audio() -> void:
 
 
 func play_animation() -> void:
-	animation.play("shoot")
+	animation.play("use")
