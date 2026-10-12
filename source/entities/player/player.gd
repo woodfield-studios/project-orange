@@ -36,7 +36,7 @@ func _ready() -> void:
 	viewmodel.equipped = current_equipment
 
 
-func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
+func _rollback_tick(delta: float, _tick: int, is_fresh: bool) -> void:
 	_mouse_look()
 
 	var direction3: Vector3 = basis * Vector3(input.direction.x, 0.0, input.direction.y)
@@ -46,12 +46,12 @@ func _rollback_tick(delta: float, _tick: int, _is_fresh: bool) -> void:
 
 	_force_update_is_on_floor()
 	if is_on_floor():
-		if input.jump:
+		if input.jump and is_fresh:
 			velocity.y = jump_velocity
 	else:
 		velocity.y -= Constants.GRAVITY * delta
 
-	if input.use:
+	if input.use and is_fresh:
 		viewmodel.use_equipped()
 
 	velocity *= NetworkTime.physics_factor

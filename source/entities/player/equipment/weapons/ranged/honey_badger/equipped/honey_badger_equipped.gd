@@ -31,6 +31,19 @@ func _can_fire() -> bool:
 
 
 func _on_fire() -> void:
+	_play_fx()
+	if multiplayer.is_server():
+		for peer_id: int in multiplayer.get_peers():
+			if peer_id != multiplayer.get_unique_id():
+				_play_fx_remote.rpc_id(peer_id)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _play_fx_remote() -> void:
+	_play_fx()
+
+
+func _play_fx() -> void:
 	honey_badger.play_audio()
 	honey_badger.play_animation()
 
