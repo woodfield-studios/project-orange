@@ -82,7 +82,8 @@ func _on_health_component_depleted() -> void:
 	if is_own_client:
 		var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
 		add_child(death_screen)
-		input.set_process(false)
-		$Groan.play()
+	input.set_process(false)
+	viewmodel.remove_all_equipped()
+	$Groan.play()
 	visible = false
 	$CollisionShape3D.disabled = true
