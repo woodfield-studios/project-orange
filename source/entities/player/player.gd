@@ -28,7 +28,6 @@ func _ready() -> void:
 
 	set_multiplayer_authority(1)
 	input.set_multiplayer_authority(peer_id)
-	mouse_camera.set_multiplayer_authority(peer_id)
 	rollback_synchronizer.process_settings()
 
 	if is_own_client:
