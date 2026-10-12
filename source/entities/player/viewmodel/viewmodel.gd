@@ -6,7 +6,10 @@ extends Node3D
 	set(new_equip):
 		_remove_all_equipped_viewmodels()
 		var new_equipped_scene: Node3D = new_equip.equipped_scene.instantiate()
+		new_equipped_scene.user_id = user_id
 		equipped_viewmodels.add_child(new_equipped_scene)
+
+var user_id: int = 1
 
 
 func use_equipped() -> void:

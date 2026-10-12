@@ -14,6 +14,7 @@ extends NetworkWeaponHitscan3D
 @export var infinite_ammo: bool = false
 
 var ammo: int = max_ammo
+var user_id: int = 1
 
 var _on_cooldown: bool = false
 

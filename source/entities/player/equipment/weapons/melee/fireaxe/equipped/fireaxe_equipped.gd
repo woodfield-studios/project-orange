@@ -11,6 +11,7 @@ extends Node3D
 @export_flags_3d_physics var collision_mask: int = 0xFFFFFFFF
 @export var exclude: Array[RID] = []
 
+var user_id: int = 1
 var _on_cooldown: bool = false
 
 
@@ -59,6 +60,7 @@ func _get_colliders() -> Array[Node3D]:
 
 	for collision_index: int in range(shapecast.get_collision_count()):
 		var collider: Object = shapecast.get_collider(collision_index)
-		colliders.push_back(collider)
+		if "peer_id" not in collider or user_id != collider.peer_id:
+			colliders.push_back(collider)
 
 	return colliders

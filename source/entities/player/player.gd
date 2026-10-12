@@ -15,6 +15,7 @@ extends CharacterBody3D
 @export var peer_id: int = 1:
 	set(id):
 		peer_id = id
+		viewmodel.user_id = id
 		name_tag.text = str(id)
 
 var is_own_client: bool:
