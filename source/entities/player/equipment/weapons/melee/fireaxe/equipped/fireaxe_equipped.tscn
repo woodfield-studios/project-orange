@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5gmtdr4vilkk" path="res://source/entities/player/equipment/weapons/melee/fireaxe/fireaxe.tscn" id="1_hoxah"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(1, 0.5, 1)
+size = Vector3(1, 0.5, 2)
 
 [node name="FireaxeEquipped" type="Node3D" unique_id=2143992364 node_paths=PackedStringArray("fireaxe", "shapecast")]
 script = ExtResource("1_awkue")
