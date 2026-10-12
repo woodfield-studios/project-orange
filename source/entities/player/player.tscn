@@ -59,6 +59,7 @@ script = ExtResource("9_23xah")
 root = NodePath("..")
 state_properties = Array[String]([":transform", "Viewmodel:rotation"])
 input_properties = Array[String](["Input:direction", "Input:jump", "Input:use", "Input:yaw", "Input:pitch"])
+enable_input_broadcast = false
 metadata/_custom_type_script = "uid://d350u8evihs1u"
 
 [node name="TickInterpolator" type="Node" parent="." unique_id=558911800 node_paths=PackedStringArray("root")]
