@@ -2,7 +2,7 @@ extends Node3D
 
 @export_group("Dependencies")
 @export var fireaxe: Node3D
-@export var shapecast_shape: Shape3D
+@export var shapecast: ShapeCast3D
 
 @export_group("Options")
 @export var damage: int = 10
@@ -22,7 +22,8 @@ func attack() -> bool:
 	if not _can_attack():
 		return false
 
-	_apply_data(_get_data())
+	for collider: Node3D in _get_colliders():
+		_on_hit(collider)
 
 	_on_attack()
 	_after_attack()
@@ -44,53 +45,20 @@ func _after_attack() -> void:
 	_on_cooldown = false
 
 
-func _on_hit(result: Dictionary) -> void:
-	var collider: Node3D = result.collider
+func _on_hit(collider: Node3D) -> void:
 	if collider:
 		var health_component: HealthComponent = collider.get_node_or_null("HealthComponent")
 		if health_component:
 			health_component.take_damage(damage, fireaxe)
 
 
-func _get_data() -> Dictionary:
-	# Collect data needed to synchronize the attacking event.
-	# We need to do this so that all peers agree on data to act upon.
-	# Otherwise, each peer would act upon its local data, which could result in discrepancies.
-	return {
-		"origin": global_transform.origin,
-		"direction": -global_transform.basis.z, # Assuming forward direction.
-	}
+func _get_colliders() -> Array[Node3D]:
+	shapecast.force_shapecast_update()
 
+	var colliders: Array[Node3D] = []
 
-func _apply_data(data: Dictionary) -> void:
-	# Reproduces the attacking event on all peers.
-	var origin: Vector3 = data["origin"] as Vector3
-	var direction: Vector3 = data["direction"] as Vector3
+	for collision_index: int in range(shapecast.get_collision_count()):
+		var collider: Object = shapecast.get_collider(collision_index)
+		colliders.push_back(collider)
 
-	# Perform the shapecast from origin in the given direction.
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-
-	var shape_query_shape: Shape3D = BoxShape3D.new()
-	shape_query_shape.size = Vector3(1.0, 0.5, 1.0)
-
-	# Create a PhysicsShapeQueryParameters3D object.
-	var shape_params: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
-	shape_params.shape = shape_query_shape
-	shape_params.transform.origin = origin + direction.normalized()
-
-	# Set collision masks or exclude objects:
-	shape_params.collision_mask = collision_mask
-	shape_params.exclude = exclude
-
-	var results: Array[Dictionary] = space_state.intersect_shape(shape_params)
-
-	var results_filtered: Array[Dictionary] = results.filter(
-		func(result: Dictionary) -> bool:
-			return result.collider is Node3D,
-	)
-
-	for result: Dictionary in results_filtered:
-		_on_hit(result)
-
-	# Play attacking effects on all peers.
-	_on_attack()
+	return colliders
