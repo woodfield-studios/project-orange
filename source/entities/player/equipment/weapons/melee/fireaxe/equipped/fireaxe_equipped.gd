@@ -12,7 +12,8 @@ extends Node3D
 @export var exclude: Array[RID] = []
 
 var user_id: int = 1
-var _on_cooldown: bool = false
+
+var _last_attack_tick: int = 0
 
 
 func use() -> void:
@@ -32,7 +33,7 @@ func attack() -> bool:
 
 
 func _can_attack() -> bool:
-	return not _on_cooldown
+	return NetworkTime.tick >= _last_attack_tick + cooldown * NetworkTime.tickrate
 
 
 func _on_attack() -> void:
@@ -41,9 +42,7 @@ func _on_attack() -> void:
 
 
 func _after_attack() -> void:
-	_on_cooldown = true
-	await get_tree().create_timer(cooldown).timeout
-	_on_cooldown = false
+	_last_attack_tick = NetworkTime.tick
 
 
 func _on_hit(collider: Node3D) -> void:

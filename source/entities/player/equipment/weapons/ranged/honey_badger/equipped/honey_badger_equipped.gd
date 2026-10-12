@@ -16,7 +16,7 @@ extends NetworkWeaponHitscan3D
 var ammo: int = max_ammo
 var user_id: int = 1
 
-var _on_cooldown: bool = false
+var _last_fire_tick: int = 0
 
 
 func use() -> void:
@@ -24,7 +24,10 @@ func use() -> void:
 
 
 func _can_fire() -> bool:
-	return not _on_cooldown and (ammo > 0 or infinite_ammo)
+	return (
+		NetworkTime.tick >= _last_fire_tick + _get_cooldown() * NetworkTime.tickrate
+		and (ammo > 0 or infinite_ammo)
+	)
 
 
 func _on_fire() -> void:
@@ -36,10 +39,7 @@ func _after_fire() -> void:
 	if not infinite_ammo:
 		ammo -= 1
 
-	_on_cooldown = true
-	var cooldown: float = _get_cooldown()
-	await get_tree().create_timer(cooldown).timeout
-	_on_cooldown = false
+	_last_fire_tick = NetworkTime.tick
 
 
 func _get_cooldown() -> float:
