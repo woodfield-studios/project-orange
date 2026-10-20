@@ -3,7 +3,6 @@ extends CharacterBody3D
 @export_group("Dependencies")
 @export var name_tag: Label3D
 @export var viewmodel: Node3D
-@export var mouse_camera: Node
 @export var rollback_synchronizer: RollbackSynchronizer
 @export var input: PlayerInput
 @export var hud: Control
