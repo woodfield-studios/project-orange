@@ -48,7 +48,7 @@ func _rollback_tick(delta: float, _tick: int, is_fresh: bool) -> void:
 		if input.jump and is_fresh:
 			velocity.y = jump_velocity
 	else:
-		velocity.y -= Constants.GRAVITY * delta
+		velocity += get_gravity() * delta
 
 	if input.use and is_fresh:
 		viewmodel.use_equipped()
