@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://8gvlfx0q2rju"]
+
+[ext_resource type="Script" uid="uid://c42v0d2cjr7w7" path="res://source/entities/enemy/enemy.gd" id="1_w15tc"]
+[ext_resource type="Script" uid="uid://k7tdapirl8ni" path="res://source/entities/components/health_component.gd" id="4_p7h2j"]
+[ext_resource type="Script" uid="uid://d350u8evihs1u" path="res://addons/netfox/rollback/rollback-synchronizer.gd" id="6_iv806"]
+[ext_resource type="Script" uid="uid://dour8fehaaugp" path="res://addons/netfox/tick-interpolator.gd" id="7_exa2f"]
+[ext_resource type="AudioStream" uid="uid://cdpgss0vnno08" path="res://source/entities/player/groan.wav" id="9_cssbr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sh265"]
+albedo_color = Color(0.39, 0.1443, 0.1443, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1214147857 node_paths=PackedStringArray("navigation_agent")]
+script = ExtResource("1_w15tc")
+navigation_agent = NodePath("NavigationAgent3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=80356823]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=659947846]
+mesh = SubResource("SphereMesh_yf5fn")
+surface_material_override/0 = SubResource("StandardMaterial3D_sh265")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1723435564]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1106434550]
+script = ExtResource("4_p7h2j")
+
+[node name="RollbackSynchronizer" type="Node" parent="." unique_id=1178863064 node_paths=PackedStringArray("root")]
+script = ExtResource("6_iv806")
+root = NodePath("..")
+state_properties = Array[String]([":global_position"])
+enable_input_broadcast = false
+metadata/_custom_type_script = "uid://d350u8evihs1u"
+
+[node name="TickInterpolator" type="Node" parent="." unique_id=558911800 node_paths=PackedStringArray("root")]
+script = ExtResource("7_exa2f")
+root = NodePath("..")
+properties = Array[String]([":global_position"])
+metadata/_custom_type_script = "uid://dour8fehaaugp"
+
+[node name="Groan" type="AudioStreamPlayer3D" parent="." unique_id=1211787417]
+stream = ExtResource("9_cssbr")
+
+[connection signal="depleted" from="HealthComponent" to="." method="_on_health_component_depleted"]
