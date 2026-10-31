@@ -79,3 +79,4 @@ stream = ExtResource("11_23xah")
 
 [connection signal="depleted" from="HealthComponent" to="." method="_on_health_component_depleted"]
 [connection signal="health_changed" from="HealthComponent" to="HUD" method="_on_health_component_health_changed"]
+[connection signal="finished" from="Groan" to="." method="_on_groan_finished"]

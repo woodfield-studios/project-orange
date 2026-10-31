@@ -78,11 +78,27 @@ func _mouse_look() -> void:
 
 
 func _on_health_component_depleted() -> void:
+	_die()
+
+
+func _die() -> void:
 	if is_own_client:
-		var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
-		add_child(death_screen)
+		_show_death_screen()
+	_play_death_sound()
 	input.set_process(false)
 	viewmodel.remove_all_equipped()
-	$Groan.play()
-	visible = false
 	$CollisionShape3D.disabled = true
+
+
+func _show_death_screen() -> void:
+	if is_own_client:
+		var death_screen: Control = preload("res://source/ui/hud/death_screen.tscn").instantiate()
+		get_parent_node_3d().add_child(death_screen)
+
+
+func _play_death_sound() -> void:
+	$Groan.play()
+
+
+func _on_groan_finished() -> void:
+	rollback_synchronizer.despawn()

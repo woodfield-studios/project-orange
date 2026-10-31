@@ -46,3 +46,4 @@ metadata/_custom_type_script = "uid://dour8fehaaugp"
 stream = ExtResource("9_cssbr")
 
 [connection signal="depleted" from="HealthComponent" to="." method="_on_health_component_depleted"]
+[connection signal="finished" from="Groan" to="." method="_on_groan_finished"]

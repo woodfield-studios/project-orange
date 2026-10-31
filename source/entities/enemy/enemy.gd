@@ -35,5 +35,14 @@ func _find_closest_player() -> CharacterBody3D:
 
 
 func _on_health_component_depleted() -> void:
+	_die()
+
+
+func _die() -> void:
 	is_alive = false
+	$CollisionShape3D.disabled = true
 	$Groan.play()
+
+
+func _on_groan_finished() -> void:
+	queue_free()
